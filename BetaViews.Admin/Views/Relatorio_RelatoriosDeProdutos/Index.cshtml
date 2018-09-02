@@ -1,0 +1,165 @@
+﻿@model BetaViews.Messages.Models.RelatoriosDeProdutosModel
+@using PagedList.Mvc;
+@{
+
+
+    var produtosModel = ((PagedList.StaticPagedList<BetaViews.Messages.Models.ProdutoModel>)ViewBag.Produtos);
+
+}
+
+
+<div class="row" style="display:@(@produtosModel.PageNumber>1?"none":"block")">
+
+    @if (Model.TopMaisAvaliado.Any())
+    {
+
+
+        <div class="col-lg-6 col-md-12">
+            <section class="panel">
+                <header class="panel-heading panel-heading-transparent">
+                    <h2 class="panel-title">Top 10 mais avaliados</h2>
+                </header>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped mb-none">
+                            <thead>
+                                <tr>
+                                    <th>Produto</th>
+                                    <th>Total</th>
+                                    <th>Média</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.TopMaisAvaliado)
+                                {
+                                    <tr>
+                                        <td style="max-width:50%;">
+                                            @item.Nome
+                                        </td>
+                                        <td>
+                                            <span class="text-capitalize text-weight-bold">@item.TotalAvaliacoes</span>
+                                        </td>
+                                        <td style="min-width:190px;">
+                                            <span class="average">@item.MediaTotal</span>
+                                            <div id="p5sScore" class="p5s-rating-display" data-average-score="@item.MediaTotal.ToString().Replace(",", ".")">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </div>
+    }
+    <div class="divider"></div>
+    @*MENOS AVALIADOS*@
+
+    @if (Model.TopMenosAvaliado.Any())
+    {
+
+
+    <div class="col-lg-6 col-md-12">
+        <section class="panel">
+            <header class="panel-heading panel-heading-transparent">
+                <h2 class="panel-title">Top 10 com menor avaliação</h2>
+            </header>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-striped mb-none">
+                        <thead>
+                            <tr>
+                                <th>Produto</th>
+                                <th>Total</th>
+                                <th>Média</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.TopMenosAvaliado)
+                            {
+                                <tr>
+                                    <td style="max-width:50%;">
+                                        @item.Nome
+                                    </td>
+                                    <td>
+                                        <span class="text-capitalize text-weight-bold">@item.TotalAvaliacoes</span>
+                                    </td>
+                                    <td style="min-width:190px;">
+                                        <span class="average">@item.MediaTotal</span>
+                                        <div id="p5sScore" class="p5s-rating-display" data-average-score="@item.MediaTotal.ToString().Replace(",", ".")">
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    }
+
+</div>
+
+
+@if (produtosModel.Any())
+{
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="panel">
+                <header class="panel-heading panel-heading-transparent">
+                    <h2 class="panel-title">Todos os produtos</h2>
+                </header>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped mb-none">
+                            <thead>
+                                <tr>
+                                    <th>Produto</th>
+                                    <th>Total</th>
+                                    <th>Média</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in ViewBag.Produtos)
+                                {
+                                    <tr>
+                                        <td style="max-width:50%;">
+                                            @item.Nome
+                                        </td>
+                                        <td>
+                                            <span class="text-capitalize text-weight-bold">@item.TotalAvaliacoes</span>
+                                        </td>
+                                        <td style="min-width:190px;">
+                                            <span class="average">@item.MediaTotal</span>
+                                            <div id="p5sScore" class="p5s-rating-display" data-average-score="@item.MediaTotal.ToString().Replace(",", ".")">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                        <br />
+                        Página @(produtosModel.PageCount < produtosModel.PageNumber ? 0 : produtosModel.PageNumber) de @produtosModel.PageCount
+                        @Html.PagedListPager((PagedList.IPagedList)ViewBag.Produtos, page => Url.Action("Index",
+new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+}
+else
+{
+
+    <div class="alert alert-warning alert-dismissible" role="alert">
+        <strong>ops!</strong> Não existe produtos no momento.
+    </div>
+}
+

@@ -1,0 +1,373 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.2.2.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.2.2.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A8C9C888-A710-430D-95D4-C56C858490CD}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BetaViews.Static</RootNamespace>
+    <AssemblyName>BetaViews.Static</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.105.2.3\lib\net46\RestSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http, Version=4.1.1.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.4.3.2\lib\net46\System.Net.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net46\System.Security.Cryptography.Algorithms.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net46\System.Security.Cryptography.X509Certificates.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Deployment">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\css\BetaViewsCSS.css" />
+    <Content Include="Content\css\BetaViewsCSS.min.css">
+      <DependentUpon>BetaViewsCSS.css</DependentUpon>
+    </Content>
+    <Content Include="Content\css\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\css\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\css\js\affix.js" />
+    <Content Include="Content\css\js\alert.es5.js">
+      <DependentUpon>alert.js</DependentUpon>
+    </Content>
+    <Content Include="Content\css\js\alert.es5.min.js">
+      <DependentUpon>alert.es5.js</DependentUpon>
+    </Content>
+    <Content Include="Content\css\js\alert.js" />
+    <Content Include="Content\css\js\button.js" />
+    <Content Include="Content\css\js\carousel.js" />
+    <Content Include="Content\css\js\collapse.js" />
+    <Content Include="Content\css\js\dropdown.js" />
+    <Content Include="Content\css\js\modal.js" />
+    <Content Include="Content\css\js\popover.js" />
+    <Content Include="Content\css\js\scrollspy.js" />
+    <Content Include="Content\css\js\tab.js" />
+    <Content Include="Content\css\js\tests\index.html" />
+    <Content Include="Content\css\js\tests\unit\affix.js" />
+    <Content Include="Content\css\js\tests\unit\alert.js" />
+    <Content Include="Content\css\js\tests\unit\button.js" />
+    <Content Include="Content\css\js\tests\unit\carousel.js" />
+    <Content Include="Content\css\js\tests\unit\collapse.js" />
+    <Content Include="Content\css\js\tests\unit\dropdown.js" />
+    <Content Include="Content\css\js\tests\unit\modal.js" />
+    <Content Include="Content\css\js\tests\unit\phantom.js" />
+    <Content Include="Content\css\js\tests\unit\popover.js" />
+    <Content Include="Content\css\js\tests\unit\scrollspy.js" />
+    <Content Include="Content\css\js\tests\unit\tab.js" />
+    <Content Include="Content\css\js\tests\unit\tooltip.js" />
+    <Content Include="Content\css\js\tests\vendor\jquery.min.js" />
+    <Content Include="Content\css\js\tests\vendor\qunit.css" />
+    <Content Include="Content\css\js\tests\vendor\qunit.js" />
+    <Content Include="Content\css\js\tests\visual\affix-with-sticky-footer.html" />
+    <Content Include="Content\css\js\tests\visual\affix.html" />
+    <Content Include="Content\css\js\tests\visual\alert.html" />
+    <Content Include="Content\css\js\tests\visual\button.html" />
+    <Content Include="Content\css\js\tests\visual\carousel.html" />
+    <Content Include="Content\css\js\tests\visual\collapse.html" />
+    <Content Include="Content\css\js\tests\visual\dropdown.html" />
+    <Content Include="Content\css\js\tests\visual\modal.html" />
+    <Content Include="Content\css\js\tests\visual\popover.html" />
+    <Content Include="Content\css\js\tests\visual\scrollspy.html" />
+    <Content Include="Content\css\js\tests\visual\tab.html" />
+    <Content Include="Content\css\js\tests\visual\tooltip.html" />
+    <Content Include="Content\css\js\tooltip.js" />
+    <Content Include="Content\css\js\transition.js" />
+    <Content Include="Content\css\less\BetaViewsCSS.css">
+      <DependentUpon>BetaViewsCSS.less</DependentUpon>
+    </Content>
+    <Content Include="Content\css\less\BetaViewsCSS.min.css">
+      <DependentUpon>BetaViewsCSS.css</DependentUpon>
+    </Content>
+    <Content Include="Content\css\less\bootstrap.css">
+      <DependentUpon>bootstrap.less</DependentUpon>
+    </Content>
+    <Content Include="Content\css\less\bootstrap.min.css">
+      <DependentUpon>bootstrap.css</DependentUpon>
+    </Content>
+    <Content Include="Content\js\betaviewsv1.js" />
+    <Content Include="Content\js\widget.js" />
+    <Content Include="Demos\Avaliacoes\ex\index.html" />
+    <Content Include="Demos\Avaliacoes\ex\ex.html" />
+    <Content Include="Demos\Avaliacoes\ex\FormEnvioAvaliacaoPorEmail.html" />
+    <Content Include="Demos\Avaliacoes\ex\FazerAvaliacao.html" />
+    <Content Include="Demos\layoutv1.html" />
+    <Content Include="Global.asax" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AvaliacaoLojaController.cs" />
+    <Compile Include="Controllers\AvaliacaoProdutoController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\QAController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <Content Include="packages.config" />
+    <Content Include="Content\css\less\.csscomb.json" />
+    <Content Include="Content\css\less\.csslintrc" />
+    <Content Include="Content\css\less\alerts.less" />
+    <Content Include="Content\css\less\badges.less" />
+    <Content Include="Content\css\less\bootstrap.less" />
+    <Content Include="Content\css\less\breadcrumbs.less" />
+    <Content Include="Content\css\less\button-groups.less" />
+    <Content Include="Content\css\less\buttons.less" />
+    <Content Include="Content\css\less\carousel.less" />
+    <Content Include="Content\css\less\close.less" />
+    <Content Include="Content\css\less\code.less" />
+    <Content Include="Content\css\less\component-animations.less" />
+    <Content Include="Content\css\less\dropdowns.less" />
+    <Content Include="Content\css\less\forms.less" />
+    <Content Include="Content\css\less\glyphicons.less" />
+    <Content Include="Content\css\less\grid.less" />
+    <Content Include="Content\css\less\input-groups.less" />
+    <Content Include="Content\css\less\jumbotron.less" />
+    <Content Include="Content\css\less\labels.less" />
+    <Content Include="Content\css\less\list-group.less" />
+    <Content Include="Content\css\less\media.less" />
+    <Content Include="Content\css\less\mixins.less" />
+    <Content Include="Content\css\less\mixins\alerts.less" />
+    <Content Include="Content\css\less\mixins\background-variant.less" />
+    <Content Include="Content\css\less\mixins\border-radius.less" />
+    <Content Include="Content\css\less\mixins\buttons.less" />
+    <Content Include="Content\css\less\mixins\center-block.less" />
+    <Content Include="Content\css\less\mixins\clearfix.less" />
+    <Content Include="Content\css\less\mixins\forms.less" />
+    <Content Include="Content\css\less\mixins\gradients.less" />
+    <Content Include="Content\css\less\mixins\grid-framework.less" />
+    <Content Include="Content\css\less\mixins\grid.less" />
+    <Content Include="Content\css\less\mixins\hide-text.less" />
+    <Content Include="Content\css\less\mixins\image.less" />
+    <Content Include="Content\css\less\mixins\labels.less" />
+    <Content Include="Content\css\less\mixins\list-group.less" />
+    <Content Include="Content\css\less\mixins\nav-divider.less" />
+    <Content Include="Content\css\less\mixins\nav-vertical-align.less" />
+    <Content Include="Content\css\less\mixins\opacity.less" />
+    <Content Include="Content\css\less\mixins\pagination.less" />
+    <Content Include="Content\css\less\mixins\panels.less" />
+    <Content Include="Content\css\less\mixins\progress-bar.less" />
+    <Content Include="Content\css\less\mixins\reset-filter.less" />
+    <Content Include="Content\css\less\mixins\reset-text.less" />
+    <Content Include="Content\css\less\mixins\resize.less" />
+    <Content Include="Content\css\less\mixins\responsive-visibility.less" />
+    <Content Include="Content\css\less\mixins\size.less" />
+    <Content Include="Content\css\less\mixins\tab-focus.less" />
+    <Content Include="Content\css\less\mixins\table-row.less" />
+    <Content Include="Content\css\less\mixins\text-emphasis.less" />
+    <Content Include="Content\css\less\mixins\text-overflow.less" />
+    <Content Include="Content\css\less\mixins\vendor-prefixes.less" />
+    <Content Include="Content\css\less\modals.less" />
+    <Content Include="Content\css\less\navbar.less" />
+    <Content Include="Content\css\less\navs.less" />
+    <Content Include="Content\css\less\normalize.less" />
+    <Content Include="Content\css\less\pager.less" />
+    <Content Include="Content\css\less\pagination.less" />
+    <Content Include="Content\css\less\panels.less" />
+    <Content Include="Content\css\less\popovers.less" />
+    <Content Include="Content\css\less\print.less" />
+    <Content Include="Content\css\less\progress-bars.less" />
+    <Content Include="Content\css\less\responsive-embed.less" />
+    <Content Include="Content\css\less\responsive-utilities.less" />
+    <Content Include="Content\css\less\scaffolding.less" />
+    <Content Include="Content\css\less\tables.less" />
+    <Content Include="Content\css\less\theme.less" />
+    <Content Include="Content\css\less\thumbnails.less" />
+    <Content Include="Content\css\less\tooltip.less" />
+    <Content Include="Content\css\less\type.less" />
+    <Content Include="Content\css\less\utilities.less" />
+    <Content Include="Content\css\less\variables.less" />
+    <Content Include="Content\css\less\wells.less" />
+    <Content Include="Content\css\js\.jscsrc" />
+    <Content Include="Content\css\js\.jshintrc" />
+    <Content Include="Content\css\js\tests\README.md" />
+    <Content Include="Content\css\js\tests\unit\.jshintrc" />
+    <Content Include="Content\css\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\css\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\css\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\css\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\css\fonts\FontAwesome.otf" />
+    <Content Include="Content\css\less\BetaViewsCSS.less" />
+    <None Include="bundleconfig.json" />
+    <Content Include="Content\css\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\css\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\css\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\css\fonts\glyphicons-halflings-regular.woff2" />
+    <None Include="compilerconfig.json" />
+    <None Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </None>
+    <Content Include="Views\QA\Index.cshtml" />
+    <Content Include="Views\Shared\_PaginationPartial.cshtml" />
+    <Content Include="Views\Shared\_FormularioAvaliacaoProduto.cshtml" />
+    <Content Include="Views\Shared\_FormularioQA.cshtml" />
+    <Content Include="Views\Shared\_FormularioQARepostaTerceiro.cshtml" />
+    <Content Include="Views\AvaliacaoProduto\Index.cshtml" />
+    <None Include="Properties\PublishProfiles\LOCAL_STATIC.pubxml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
+    <Folder Include="Views\AvaliacaoLoja\" />
+    <Folder Include="Views\Home\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BetaViews.Core\BetaViews.Core.csproj">
+      <Project>{934ca4dd-924e-4a68-a506-d58815581b74}</Project>
+      <Name>BetaViews.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BetaViews.Messages\BetaViews.Messages.csproj">
+      <Project>{72752319-1339-49bf-9768-814e7b7e1fc2}</Project>
+      <Name>BetaViews.Messages</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>63987</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:63987/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.2.2.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.2.2.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,174 @@
+﻿@model PagedList.IPagedList<BetaViews.Messages.Dtos.ModeracaoProdutoAvaliacaoDTO>
+@using PagedList.Mvc;
+@{
+
+    var controller = "Moderacao_ModeracaoProdutos";
+    var busca = Request["busca"];
+
+}
+
+
+
+@if (Model.Any())
+{
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="panel">
+                <div class="panel-body">
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <form class="form-inline" role="form" method="post" action="/Moderacao_ModeracaoProdutos">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="Busca" value="@busca" name="Busca" placeholder="digite um termo para buscar">
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-default">Buscar</button>
+                                    <a class="btn btn-default @(string.IsNullOrEmpty(busca)?"hidden":"")" href="/@controller">limpar</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <br />
+
+                    <div class="table-responsive1">
+                        <table class="table table-striped mb-none">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <div class="row pull-right">
+                                            <div class="col-xs-12">
+                                                <span class="badge">@ViewBag.TotalRows avaliações para moderar</span>
+                                            </div>
+                                        </div>
+                                        <div class="btn-group pull-left">                                            
+                                            <div class="pull-left">
+                                                <input type="checkbox" id="ckbCheckAll" name="ckbCheckAll" />
+                                                <label class="label label-default" for="ckbCheckAll" data-toggle="tooltip" title="Clique no botão de opções para aprovar ou reprovar mais de uma avaliação.">Selecionar todas as avaliações</label>
+                                            </div>
+                                            <a class="btn red btn-outline " href="javascript:;" data-toggle="dropdown">
+                                                <i class="fa fa-share"></i>
+                                                <span class="hidden-xs"> Opções </span>
+                                                <i class="fa fa-angle-down"></i>
+                                            </a>
+                                            <ul class="dropdown-menu pull-right">
+                                                <li>
+                                                    <a href="javascript:;"><i class="fa fa-file-excel-o"></i> Exportar para Excel </a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:;" class="aprovarTodosMarcados"><i class="fa fa-check-circle-o"></i> Aprovar avaliações selecionadas </a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="javascript:;" class="reprovarTodosMarcados"><i class="fa fa-unlock"></i> Reprovar avaliações</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    var alertaClass = "";
+                                    if (item.Avaliacao.ClienteClassificacao <= 3) { alertaClass = "alert alert-danger"; }
+
+                                    <tr class="totLinhas tr_@item.Avaliacao.IdAvaliacao @alertaClass">
+                                        <td>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <input type="checkbox" class="checkItem" id="checkItem_@item.Avaliacao.IdAvaliacao" value="@item.Avaliacao.IdAvaliacao" />                                                    
+                                                    <strong>
+                                                       @item.Avaliacao.IdAvaliacao - <a href="@item.Produto.PrdLink" target="_blank">@item.Produto.PrdNome - @item.Produto.PrdCodigo</a>
+                                                    </strong>
+                                                    
+                                                    <br class="clearfix" />
+                                                    <div class="panel-body">
+                                                        
+                                                        <div class="scrollable visible-slider has-scrollbar" data-plugin-scrollable="" style="height:100px;">
+                                                            <div class="scrollable-content" tabindex="0" style="right: -17px;">
+                                                                <h4>@item.Avaliacao.ClienteTitulo</h4>
+                                                                <p><i class="fa fa-quote-left  fa-pull-left fa-border"></i>@item.Avaliacao.ClienteComentario</p>
+                                                            </div>
+                                                            <div class="scrollable-pane" style="opacity: 1; visibility: visible;">
+                                                                <div class="scrollable-slider" style="height: 98px; transform: translate(0px, 252px);"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <br />
+                                                    <div>
+                                                        <span class="badge badge-roundless"> @item.Avaliacao.ClienteClassificacao </span>
+                                                        @for (int i = 0; i < @item.Avaliacao.ClienteClassificacao; i++)
+                                                        {
+                                                            <i class="fa fa-star fa-1x text-warning "></i>
+                                                        }
+                                                    </div>
+                                                    <p class="text-weight-semibold">
+                                                        Avaliação publicada na loja <strong>@item.Loja.LojaNome @(item.Loja.LojaMarketPlace?"/Market place":"")</strong>
+                                                        Avaliado em <strong>@item.Avaliacao.DataAvaliacao.ToString("dd/MM/yyyy")</strong> por <strong>@item.Avaliacao.ClienteNome - @item.Avaliacao.ClienteLocalizacao</strong><br />                                                        
+                                                        Email: <strong>@item.Avaliacao.ClienteEmail</strong><br />
+                                                        Cliente recomendou o produto? <strong>@(item.Avaliacao.ClienteRecomenda?"SIM":"Não")</strong>
+                                                    </p>
+
+                                                </div>
+                                            </div>
+                                            <hr />
+                                            <div class="row">
+                                                <div class="btn btn-group-circle" id="aprovOuRejPanel_@item.Avaliacao.IdAvaliacao">
+                                                    <input type="radio" value="5" class="btnAprovOuRejRadio" data-id="@item.Avaliacao.IdAvaliacao" name="aprRej_@item.Avaliacao.IdAvaliacao" id="aprovar_@item.Avaliacao.IdAvaliacao" /> <label class="label label-success" for="aprovar_@item.Avaliacao.IdAvaliacao">Aprovar</label>
+                                                    <input type="radio" value="3" class="btnAprovOuRejRadio" data-id="@item.Avaliacao.IdAvaliacao" name="aprRej_@item.Avaliacao.IdAvaliacao" id="rejeitar_@item.Avaliacao.IdAvaliacao" /> <label class="label label-danger" for="rejeitar_@item.Avaliacao.IdAvaliacao">Rejeitar</label>
+                                                    <div class="btn" id="OpcaoRejeicao_@item.Avaliacao.IdAvaliacao" style="display:none;">
+                                                        <select>
+                                                            <option value="1">Seleciona uma opção</option>
+                                                            <option value="2">Não relevante ao produto ou lojista</option>
+                                                            <option value="3">Duplicado</option>
+                                                        </select>
+                                                    </div>
+
+                                                    <button class="btn btn-default btnAprovOuRej" data-id="@item.Avaliacao.IdAvaliacao"
+                                                            id="btnAprovOuRej">
+                                                        Processar
+                                                    </button>
+                                                </div>
+                                                <div class="alert alert-success alert-dismissable" id="aprovOuRejAlert_@item.Avaliacao.IdAvaliacao" style="display:none;">
+                                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                                                    <strong>Tudo certo!</strong> Avaliação processada!
+                                                </div>
+                                                <div class="alert alert-danger alert-dismissable" id="aprovOuRejAlertError_@item.Avaliacao.IdAvaliacao" style="display:none;">
+                                                    <strong>Erro!</strong> Informe uma opção!
+                                                </div>
+                                            </div>
+
+
+
+                                        </td>                                                   
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                        <br />
+                        Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
+                        @Html.PagedListPager(Model, page => Url.Action("Index",new { page, busca= busca, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+}
+else
+{
+
+    <div class="alert alert-warning alert-dismissible" role="alert">
+        <strong>ops!</strong> Não existe resultados no momento. <a class="btn btn-default" href="/@controller">voltar</a>
+    </div>
+}
+
+
+@section Scripts{
+
+<script src="~/assets/javascripts/controllers/moderacao/produto/index.js"></script>    
+<script src="~/assets/vendor/nanoscroller/nanoscroller.js"></script>
+
+}

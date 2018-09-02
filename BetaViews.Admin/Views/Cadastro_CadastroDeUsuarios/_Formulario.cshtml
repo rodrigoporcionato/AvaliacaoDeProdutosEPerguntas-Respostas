@@ -1,0 +1,120 @@
+﻿@model BetaViews.Messages.Models.ClienteAcessoModel
+
+
+<div class="form-horizontal">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.IdCliente, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.HiddenFor(model => model.Senha, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.HiddenFor(model => model.DtUltimoAcesso, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.HiddenFor(model => model.FlagStatus, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.HiddenFor(model => model.PrimeiroAcesso, new { htmlAttributes = new { @class = "form-control" } })
+    @*@Html.HiddenFor(model => model.UsuarioMaster, new { htmlAttributes = new { @class = "form-control" } })*@
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-4">
+            @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Departamento, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-2">
+            @Html.EditorFor(model => model.Departamento, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Departamento, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.UsuarioMaster, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.CheckBoxFor(model => model.UsuarioMaster, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.UsuarioMaster, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    
+    <div class="form-group" id="perfilAcessoPersonalizado" style="display:@(Model.UsuarioMaster?"none":"block");">        
+        @Html.ValidationMessageFor(model => model.IdsClienteAcessoPerfil, "", new { @class = "text-danger" })
+        @Html.LabelFor(model => model.IdsClienteAcessoPerfil, htmlAttributes: new { @class = "control-label col-md-2" })        
+        <div class="col-md-10">
+            <div class="">
+                <ul class="list-group">
+                    @foreach (var modulo in Model.PaginaAcesso.GroupBy(x => x.Modulo).ToList())
+                    {
+
+                        var checkedInput = "";
+                        if (Model.IdsClienteAcessoPerfil != null && Model.IdsClienteAcessoPerfil.Where(x => modulo.FirstOrDefault().Id == x).Any())
+                        {
+                            checkedInput = "checked";
+                        }
+                        <li class="list-group-item">
+                            <div class="checkbox-custom checkbox-primary">
+                                <input name="IdsClienteAcessoPerfil" @checkedInput type="checkbox" class="checkPai" data-modulo="@modulo.FirstOrDefault().Modulo" id="@modulo.FirstOrDefault().Id" value="@modulo.FirstOrDefault().Id">
+                                <label for="@modulo.FirstOrDefault().Id">@modulo.FirstOrDefault().Id - @modulo.FirstOrDefault().Modulo</label>
+                            </div>
+                            <ul class="list-group">
+                                @foreach (var item in Model.PaginaAcesso.Where(x => x.Modulo == modulo.FirstOrDefault().Modulo).ToList())
+                                {
+
+                                    if (Model.IdsClienteAcessoPerfil != null && Model.IdsClienteAcessoPerfil.Where(x => item.Id == x).Any())
+                                    {
+                                        checkedInput = "checked";
+                                    }
+                                    else
+                                    {
+                                        checkedInput = "";
+                                    }
+
+                                    <li class="list-group-item">
+                                        <div class="checkbox-custom checkbox-primary">
+                                            <input name="IdsClienteAcessoPerfil" @checkedInput type="checkbox" id="sub_@item.Id" value="@item.Id" data-modulo="@item.Modulo">
+                                            <label for="sub_@item.Id">@item.Modulo - @item.Nome - @item.Descricao</label>
+                                        </div>
+                                    </li>
+                                }
+                            </ul>
+
+                        </li>
+
+                    }
+                </ul>                
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.IdsClienteAcessoLoja, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.ListBoxFor(model => model.IdsClienteAcessoLoja, (MultiSelectList)ViewBag.lojasAcesso, new { @class = "col-md-2 form-control populate", @data_plugin_selecttwo = "data-plugin-selecttwo" })
+            @Html.ValidationMessageFor(model => model.IdsClienteAcessoLoja, "", new { @class = "text-danger" })
+            <br />
+            <label class="label text-sm label-primary">
+                Selecione as lojas que este usuário pode visualizar.
+                Caso não selecione nenhuma loja, o usuário terá acesso a qualquer loja.
+            </label>
+        </div>
+    </div>
+
+    
+    <hr />
+    
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            
+            @if (AppUserManager.VerificaAcessoPagina(BetaViews.Messages.Models.PaginaAcessoEnum.Cadastro_PermissoesDeAcesso))
+            {
+                <input type="submit" value="@(Model.Id>0? "Editar usuário":"Criar novo usuário")" class="btn btn-primary" />
+            }            
+        </div>
+    </div>
+</div>

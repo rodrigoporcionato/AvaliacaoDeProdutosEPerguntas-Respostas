@@ -1,0 +1,122 @@
+﻿@model BetaViews.Messages.Models.ClienteAcessoMeuPerfilModel
+
+@{
+    ViewBag.Title = "Meu Perfil";
+    ViewBag.SubTitle = "Alteração de dados";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Alteração de seus dados pessoais</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.IdUsuario, new { htmlAttributes = new { @class = "form-control" } })
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control"} })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Departamento, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.Departamento, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Departamento, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AlterPassword, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.CheckBoxFor(model => model.AlterPassword, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        
+        <div class="changepwd" style="display:@(Model.AlterPassword ? "block" : "none");">
+            <div class="form-group">
+                @Html.LabelFor(model => model.OldPassword, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.OldPassword, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.OldPassword, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ConfirmPassword, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+        </div>
+
+
+        <br />
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Alterar" class="btn btn-default" />
+            </div>
+        </div>
+
+        
+        @if (ViewBag.DadosAlterados)
+        {
+            <div class="alert alert-info alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong>ok!</strong> Dados alterados com sucesso!
+            </div>
+        }
+
+    </div>
+}
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+
+
+            $(document).on('click', '#AlterPassword', function () {
+
+                var changepwd = $(this).prop('checked');
+
+                if (changepwd) {
+                    $('.changepwd').show();
+                } else {
+                    $('.changepwd').hide();
+                }
+            });
+
+        });
+    </script>
+    
+    
+}

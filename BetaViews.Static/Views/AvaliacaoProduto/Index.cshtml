@@ -1,0 +1,278 @@
+﻿@model BetaViews.Messages.SendReceiver.Avaliacoes.ListarAvaliacoes.Produto.ListarAvaliacoesProdutosRS
+@{
+    Layout = null;
+}
+
+@*MODAL DE AVALIACAO*@
+
+
+<div class="modal fade bootstrap-iso" id="modalAvaliacao" tabindex="-1" role="dialog" aria-labelledby="modalAvaliacao-label">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="modalAvaliacao-label">Faça uma Avaliação</h4>
+            </div>
+            <div class="modal-body">
+                @Html.Partial("_FormularioAvaliacaoProduto")
+                <span class="enviarAvaliacaoErro"></span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="enviarAvaliacao" class="btn btn-default enviarAvaliacao">Enviar avaliação para revisão</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+@*MODAL DE AVALIACAO*@
+
+@if (!Model.Avaliacoes.Any())
+{
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h2><i class="fa fa-star-o"></i>Avaliação de Clientes</h2>
+        </div>
+        <div class="panel-body">
+            <h3>
+                Ainda não temos avaliações. <a href="#" class="btn btn-default"  data-toggle="modal" data-target="#modalAvaliacao">Faça uma avaliação</a>                
+            </h3>
+        </div>
+    </div>
+}
+else
+{
+    <div class="panel panel-default" id="painelavaliacoescomlist" data-prodCodigo="@Model.Produto.PrdCodigo" data-lojacodigo="@Model.Loja.LojaCodigo">
+        <div class="panel-heading">
+            <h3>Avaliação de Clientes</h3>
+        </div>
+        <div class="panel-body">
+            @*<div class="pull-right">
+                    <a href="#" class="btn btn-default btnOpenAvaliacao trigger">Faça uma Avaliação</a>
+                </div>*@
+            <div class="dispayavaliacao">
+                <div class="clearfix"></div>
+                <div class="row hreview-aggregate">
+                    <div class="col-md-12">
+                        <div class="item h4 hidden-xs">
+                            <span class="fn">@Model.Produto.PrdNome</span>
+                        </div>
+                        <div class="rating">
+                            <div id="p5sScore" class="p5s-rating-display"
+                                 data-average-score="@Model.AvaliacaoGeral.AvaliacaoGeral.ToString().Replace(",",".")" title="classificação atual: @Model.AvaliacaoGeral.AvaliacaoGeral baseado em uma classificação real de nossos clientes">
+                            </div>
+                            <span class="badge average">@Model.AvaliacaoGeral.AvaliacaoGeral</span>
+                            <span class="small">(baseado em <span class="count">@Model.AvaliacaoGeral.TotalAvaliacoes</span> avaliações)</span>
+                        </div>
+                    </div>
+                </div>
+                <br class="clearfix">
+                <div class="row">
+                    <div class="col-xs-6">
+                        @{
+                            var p5 = (int)Math.Round(100 * ((double)(Model.AvaliacaoGeral.Total5Estrela) / (double)Model.AvaliacaoGeral.TotalAvaliacoes) + 1);
+                            var p4 = (int)Math.Round(100 * ((double)(Model.AvaliacaoGeral.Total4Estrela) / (double)Model.AvaliacaoGeral.TotalAvaliacoes) + 1);
+                            var p3 = (int)Math.Round(100 * ((double)(Model.AvaliacaoGeral.Total3Estrela) / (double)Model.AvaliacaoGeral.TotalAvaliacoes) + 1);
+                            var p2 = (int)Math.Round(100 * ((double)(Model.AvaliacaoGeral.Total2Estrela) / (double)Model.AvaliacaoGeral.TotalAvaliacoes) + 1);
+                            var p1 = (int)Math.Round(100 * ((double)(Model.AvaliacaoGeral.Total1Estrela) / (double)Model.AvaliacaoGeral.TotalAvaliacoes) + 1);
+                        }
+                        <span>5 Estrelas</span>
+                        <div class="progress-custom">
+                            <div class="progress">
+                                <div class="progress-bar progress-sm  progress-bar-warning" role="progressbar" aria-valuenow="@Model.AvaliacaoGeral.Total5Estrela" aria-valuemin="0" aria-valuemax="235" style="width:@p5%;"></div>
+                            </div>
+                            <div class="progress-value">@Model.AvaliacaoGeral.Total5Estrela</div>
+                        </div>
+
+                        <span>4 Estrelas</span>
+                        <div class="progress-custom">
+                            <div class="progress">
+                                <div class="progress-bar progress-sm  progress-bar-warning" role="progressbar" aria-valuenow="@Model.AvaliacaoGeral.Total4Estrela" aria-valuemin="0" aria-valuemax="235" style="width:@p4%;"></div>
+                            </div>
+                            <div class="progress-value">@Model.AvaliacaoGeral.Total4Estrela</div>
+                        </div> <span>3 Estrelas</span>
+                        <div class="progress-custom">
+                            <div class="progress">
+                                <div class="progress-bar progress-sm  progress-bar-warning" role="progressbar" aria-valuenow="@Model.AvaliacaoGeral.Total3Estrela" aria-valuemin="0" aria-valuemax="235" style="width:@p3%;"></div>
+                            </div>
+                            <div class="progress-value">@Model.AvaliacaoGeral.Total3Estrela</div>
+                        </div> <span>2 Estrelas</span>
+                        <div class="progress-custom">
+                            <div class="progress">
+                                <div class="progress-bar progress-sm  progress-bar-warning" role="progressbar" aria-valuenow="@Model.AvaliacaoGeral.Total2Estrela" aria-valuemin="0" aria-valuemax="235" style="width:@p2%;"></div>
+                            </div>
+                            <div class="progress-value">@Model.AvaliacaoGeral.Total2Estrela</div>
+                        </div> <span>1 Estrelas</span>
+                        <div class="progress-custom">
+                            <div class="progress">
+                                <div class="progress-bar progress-sm  progress-bar-warning" role="progressbar" aria-valuenow="@Model.AvaliacaoGeral.Total1Estrela" aria-valuemin="0" aria-valuemax="235" style="width:@p1%;"></div>
+                            </div>
+                            <div class="progress-value">@Model.AvaliacaoGeral.Total1Estrela</div>
+                        </div>
+                    </div>
+
+                    @if (Model.AvaliacaoGeral.PercentualRecomenda > 0)
+                {
+
+                        <div class="col-xs-6">
+                            <div class="hidden-xs">
+                                <div class="c100 p@(Model.AvaliacaoGeral.PercentualRecomenda) big orange">
+                                    <span>@Model.AvaliacaoGeral.PercentualRecomenda %</span>
+                                    <div class="slice">
+                                        <div class="bar"></div>
+                                        <div class="fill"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <h4 class="percentrecomendaprd" data-percent-recomenda-prod="@Model.AvaliacaoGeral.PercentualRecomenda">@Model.AvaliacaoGeral.PercentualRecomenda% dos clientes recomendam este produto</h4>
+                        </div>
+                    }
+                </div>
+                <br class="clearfix">
+                @if (Model.AvaliacaoNegativaMaisUtil != null && Model.AvaliacaoPositivaMaisUtil != null)
+                {
+                    if (Model.AvaliacaoNegativaMaisUtil.IdAvaliacao > 0 && Model.AvaliacaoPositivaMaisUtil.IdAvaliacao > 0)
+                    {
+
+
+                        <div class="row">
+                            <div class="col-sm-6 col-md-6">
+                                <div class="thumbnail" style="min-height:140px">
+                                    <div class="caption">
+                                        <div class="text-center">
+                                            <div id="p5sScore1" class="p5s-rating-display stars1" data-average-score="@Model.AvaliacaoPositivaMaisUtil.ClienteClassificacao"></div>
+                                            <br class="clearfix">
+                                        </div>
+                                        <h4 class="text-center p5s-label">Avaliação Positiva Mais Útil</h4>
+                                        <p class="text-left p5s-comments">
+                                            @if (Model.AvaliacaoPositivaMaisUtil.ClienteComentario.Length > 110)
+                                            {
+                                                <span class="commentminp">@Model.AvaliacaoPositivaMaisUtil.ClienteComentario.Substring(0, 110)</span>
+                                                <span class="commentcompletep" style="display:none;">@Model.AvaliacaoPositivaMaisUtil.ClienteComentario</span>
+                                                <a href="#p5s-comments" class="readmorep">ver mais</a>
+                                            }
+                                            else
+                                            {
+                                                @Model.AvaliacaoPositivaMaisUtil.ClienteComentario
+                                            }
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6">
+                                <div class="thumbnail" style="min-height:140px">
+                                    <div class="caption">
+                                        <div class="text-center">
+                                            <div id="p5sScore2" class="p5s-rating-display stars1" data-average-score="@Model.AvaliacaoNegativaMaisUtil.ClienteClassificacao"></div>
+                                            <br class="clearfix">
+                                        </div>
+                                        <h4 class="text-center p5s-label">Avaliação Negativa Mais Útil</h4>
+                                        <p class="text-left p5s-comments">
+                                            @if (Model.AvaliacaoNegativaMaisUtil.ClienteComentario.Length > 110)
+                                            {
+                                                <span class="commentminn">@Model.AvaliacaoNegativaMaisUtil.ClienteComentario.Substring(0, 110)</span>
+                                                <span class="commentcompleten" style="display:none;">@Model.AvaliacaoNegativaMaisUtil.ClienteComentario</span>
+                                                <a href="#p5s-comments" class="readmoren">ver mais</a>
+                                            }
+                                            else
+                                            {
+                                                @Model.AvaliacaoNegativaMaisUtil.ClienteComentario
+                                            }
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br class="clearfix">
+                    }
+                }
+                <div id="ancorAvp5sReviews"></div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="">
+                            <div class="pull-right">
+                                <label for="btnAvaliacaoFiltroOpcao" class="">Ordenar por</label>
+                                <select class="form-control" id="btnAvaliacaoFiltroOpcao">
+                                    <option value="DATA_DESC">Mais novo</option>
+                                    <option value="DATA_ASC">Mais antigo</option>
+                                    <option value="CLASS_DESC">Classificação mais alta</option>
+                                    <option value="CLASS_ASC">Classificação mais baixa</option>
+                                    <option value="UTIL_DESC">Mais útil</option>
+                                    <option value="NAOUTIL_DESC">Menos útil</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br class="clearfix">
+
+                @*@Html.Partial("_FormularioAvaliacaoProduto")*@
+
+                <div class="row">
+                    <div class="col-md-12">
+                        @Html.Partial("_PaginationPartial", Model.Pagination)
+                        <div class="list-group" id="p5sAvaliacoesList">
+                            @foreach (var item in Model.Avaliacoes)
+                            {
+
+                                <div class="list-group-item" data-idreview="@item.IdAvaliacao">
+                                    <div>
+                                        <div id="p5sScore3" class="p5s-rating-display stars1" data-average-score="@item.ClienteClassificacao"></div>
+                                        <br class="clearfix">
+                                    </div> <strong class="list-group-item-heading text-capitalize">@item.ClienteTitulo</strong>
+                                    <br class="clearfix">
+                                    <br class="clearfix">
+                                    <p class="list-group-item-text p5s-comments">@item.ClienteComentario</p>
+                                    <br class="clearfix"><span class="text-capitalize">@item.ClienteNome - @item.ClienteLocalizacao em @item.DataAvaliacao.ToString("dd/MM/yyyy")</span>
+                                    <br class="clearfix">
+                                    <br class="clearfix">
+
+                                    @if (item.ClienteRecomenda)
+                                    {
+                                        <div>
+                                            <span title="O cliente achou este intem interessante">
+                                                <i class="fa fa-check-circle text-success" aria-hidden="true"></i> <strong>
+                                                    O cliente recomendou este item.
+                                                </strong>
+                                            </span>
+                                        </div>
+                                    }
+                                    <br class="clearfix">
+                                    <ul class="list-inline" id="datareview@(item.IdAvaliacao)">
+                                        <li>
+                                            <span class="btn btn-default btnthumbsupOrdown" data-id="@item.IdAvaliacao" data-ac="positivereview" data-total="@item.QtdAjudou">
+                                                <i class="fa fa-thumbs-up"></i> Gostei (@item.QtdAjudou)
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span class="btn btn-default btnthumbsupOrdown" data-id="@item.IdAvaliacao" data-ac="negativereview" data-total="@item.QtdNaoAjudou">
+                                                <i class="fa fa-thumbs-down " style="color:#eb5353;"></i> Não Gostei (@item.QtdNaoAjudou)
+                                            </span>
+                                        </li>
+                                        <li class="">
+                                            <span class="btn btn-link btnReportAbuseReview" data-id="@item.IdAvaliacao" data-ac="reviewreportabuse">
+                                                <i class="fa fa-flag " style="color:#bfbaba"></i> Reportar
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span class="text-success txtinfoaction"></span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            }
+                        </div>
+                        @Html.Partial("_PaginationPartial", Model.Pagination)
+                    </div>
+                </div>
+                <br class="clearfix"><br class="clearfix"><br class="clearfix"><br class="clearfix">
+                <div class="pull-left">
+                    <a href="http://wwww.betaviews.com.br" title="criação de resultados reais" target="_blank" alt="Avaliação auditada por Beta Views">
+                        <img src="http://pushstars.effectlab.com.br/assets/layouts/layout5/img/logo2.png" alt="beta views avaliações" class="img-thumbnail">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+}

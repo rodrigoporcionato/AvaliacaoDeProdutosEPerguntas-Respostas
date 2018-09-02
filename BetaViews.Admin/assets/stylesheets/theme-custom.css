@@ -1,0 +1,80 @@
+/* Add here all your CSS customizations */
+
+
+ .rating {
+  width: auto !important;
+  height: auto !important;
+  text-indent: 0 !important;
+  display: block !important;
+  font-size: 22px !important;
+  background-image: none !important;
+  background-repeat: no-repeat !important;
+}
+ .p5s-rating-display.stars1 {
+  font-size: 2em;
+}
+ .p5s-rating-display {
+  font-size: 30px;
+  unicode-bidi: bidi-override;
+  color: #eee;
+  display: inline-block;
+  position: relative;
+}
+ .p5s-rating-display:before,
+ .p5s-rating-display:after {
+  content: "\2605\2605\2605\2605\2605";
+  display: inline-block;
+  white-space: nowrap;
+}
+ .p5s-rating-display:before {
+  color: #ffd200;
+  position: absolute;
+  z-index: 1;
+  left: 0px;
+  overflow: hidden;
+}
+ .p5s-rating-display:after {
+  z-index: 0;
+}
+ .p5s-rating-display[data-average-score="0"]:before {
+  width: 0%;
+}
+ .p5s-rating-display[data-average-score="0.5"]:before {
+  width: 10%;
+}
+ .p5s-rating-display[data-average-score="1"]:before {
+  width: 20%;
+}
+ .p5s-rating-display[data-average-score="1.5"]:before {
+  width: 30%;
+}
+ .p5s-rating-display[data-average-score="2"]:before {
+  width: 40%;
+}
+ .p5s-rating-display[data-average-score="2.5"]:before {
+  width: 50%;
+}
+ .p5s-rating-display[data-average-score="3"]:before {
+  width: 60%;
+}
+ .p5s-rating-display[data-average-score="3.5"]:before {
+  width: 70%;
+}
+ .p5s-rating-display[data-average-score="4"]:before {
+  width: 80%;
+}
+ .p5s-rating-display[data-average-score="4.5"]:before {
+  width: 90%;
+}
+ .p5s-rating-display[data-average-score="5"]:before {
+  width: 100%;
+}
+ .average {
+  border: 2px solid;
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 15px;
+  font-weight: 600;
+  color: white;
+  background-color: #bdbdbd;
+}

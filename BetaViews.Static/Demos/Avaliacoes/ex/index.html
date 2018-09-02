@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body class="container bootstrap-iso push5stars">
+
+    <div id="avaliacoesBetaViews"></div>
+
+
+
+    <script type="text/javascript">
+
+        var betaViewsParams = {
+            EL_AVALIACAO: '#avaliacoesBetaViews',
+            EL_AVALIACAO_RATING: '#pushstarsratingsdisplay',
+            APIKEY: '117951c2-3f45-458d-a358-b3c58da2c046',
+            PRD_CODIGO: '3442664',
+            DISPLAY_AVALICAO: true,
+            DISPLAY_QA: true,
+            PRD_NOME: 'Lavadora/Secadora de Roupas LG Titan WD1316AD(A)7 16 Kg, em Aço Escovado, com 6 Movimentos de Lavagem, Steam (Vapor) e Turbo Wash',
+            PRD_DEPTO: 'Eletrodomésticos',
+            PRD_CATEGORIA: 'Lava e Seca',
+            PRD_SUBCATEGORIA: 'Lavadora',
+            PRD_MARCA: 'LG',
+            LOJA_CODIGO: 'L15_2',
+            LOJA_NOME: 'EXTRA',
+            LOJA_MKTP: false,
+            LOJA_CSS: '',
+            CLIENTE_NOME: '',
+            CLIENTE_EMAIL: '',
+            ORDENACAO_PADRAO: '',
+        }
+        betaviews_Init = window.betaviews_Init || [];
+        betaviews_Init.push(betaViewsParams);
+        (function () {
+            if ('BETAVIEWSLOAD' in window) return;
+            BETAVIEWSLOAD = true;
+            var mc = document.createElement('script');
+            mc.type = 'text/javascript';
+            mc.async = true;
+            mc.src = 'http://localhost:63987/Content/js/betaviewsv1.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+        })();
+    </script>
+</body>
+
+</html>

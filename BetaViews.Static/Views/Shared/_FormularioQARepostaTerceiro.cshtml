@@ -1,0 +1,99 @@
+﻿<div class="panel panel-default qarespostap5s">
+    <div class="panel-body">
+        <div class="alert alert-info alert-dismissible qarespmsgok hidden" role="alert">
+            <div class="text-xs-center">
+                <h2 class="display-3"><i class="fa fa-2x fa-check-circle"></i>Obrigado!</h2>
+                <p class="lead">Agradecemos por responder a pergunta do nosso cliente! Em breve ela será postada no site.</p>
+                <br />
+                <p class="lead">
+                    <button class="btn btn-default" data-dismiss="modal">Voltar para o produto</button>
+                </p>
+            </div>
+        </div>
+
+        <form role="form" id="formEnvioQARespostaAnalise" method="post">
+            <input type="hidden" id="idquestion" name="idquestion" value="" />
+            <div class="row">
+                <div class="col-md-12 col-xs-12">
+                    <div class="form-group">
+                        <label class="control-label" for="Resposta">Resposta*</label>
+                        <textarea class="form-control" name="Resposta" rows="5"
+                                  required="" data-parsley-trigger="keyup" data-parsley-minlength="5" data-parsley-maxlength="1000"
+                                  data-parsley-minlength-message="Insira pelo menos 5 caracteres na sua resposta."
+                                  data-parsley-validation-threshold="4"></textarea>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-6 col-xs-6">
+                    <div class="form-group">
+                        <label class="control-label" for="ClienteNome">Nome*</label>
+                        <input type="text" class="form-control" name="ClienteNome" id="ClienteNome" placeholder="Digite seu nome para apresentar na avaliação"
+                               required="" maxlength="25"
+                               data-parsley-trigger="keyup"
+                               data-parsley-minlength="4"
+                               data-parsley-maxlength="25"
+                               data-parsley-minlength-message="Insira pelo menos 4 caracteres no seu nome."
+                               data-parsley-validation-threshold="3">
+                    </div> <span id="helpBlock" class="help-block">Não use seu nome completo ou endereço de e-mail; Sua privacidade é importante para nós.</span>
+                </div>
+                <div class="col-md-6 col-xs-6">
+                    <div class="form-group">
+                        <label class="control-label" for="ClienteEmail">E-mail*</label>
+                        <input type="email" class="form-control" id="ClienteEmail" name="ClienteEmail"
+                               placeholder="Informe seu e-mail"
+                               data-parsley-trigger="change" required="">
+                    </div> <span id="helpBlock" class="help-block">Seu e-mail não irá aparecer na sua resposta.</span>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-6 col-xs-12">
+                    <div class="form-group">
+                        <label class="control-label" for="ClienteLocalizacao">Localização</label>
+                        <select class="form-control" name="ClienteLocalizacao" required="">
+                            <option value="">Selecione sua localização</option>
+                            <option value="AC">Acre</option>
+                            <option value="AL">Alagoas</option>
+                            <option value="AP">Amapá</option>
+                            <option value="AM">Amazonas</option>
+                            <option value="BA">Bahia</option>
+                            <option value="CE">Ceará</option>
+                            <option value="DF">Distrito Federal</option>
+                            <option value="ES">Espírito Santo</option>
+                            <option value="GO">Goiás</option>
+                            <option value="MA">Maranhão</option>
+                            <option value="MT">Mato Grosso</option>
+                            <option value="MS">Mato Grosso do Sul</option>
+                            <option value="MG">Minas Gerais</option>
+                            <option value="PA">Pará</option>
+                            <option value="PB">Paraíba</option>
+                            <option value="PR">Paraná</option>
+                            <option value="PE">Pernambuco</option>
+                            <option value="PI">Piauí</option>
+                            <option value="RJ">Rio de Janeiro</option>
+                            <option value="RN">Rio Grande do Norte</option>
+                            <option value="RS">Rio Grande do Sul</option>
+                            <option value="RO">Rondônia</option>
+                            <option value="RR">Roraima</option>
+                            <option value="SC">Santa Catarina</option>
+                            <option value="SP">São Paulo</option>
+                            <option value="SE">Sergipe</option>
+                            <option value="TO">Tocantins</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="form-group">
+                <label class="control-label" for="form-group-input">Termo de aceite*</label>
+                <p>
+                    <input type="checkbox" name="termoQARespAceite" id="termoQARespAceite" required="">
+                    <label class="checkbox-inline" for="termoQARespAceite">&nbsp;&nbsp;Aceito os termos e estou de acordo com o mesmo.</label>
+                </p>
+            </div>
+            <p>Você poderá receber e-mails relacionados a esse envio. Em todos os e-mails haverá o recurso de cancelar o recebimento de comunicados futuros.</p>
+        </form>
+    </div>
+</div>

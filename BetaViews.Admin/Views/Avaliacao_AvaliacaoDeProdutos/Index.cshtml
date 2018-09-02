@@ -1,0 +1,135 @@
+﻿@model PagedList.IPagedList<BetaViews.Messages.Dtos.ModeracaoProdutoAvaliacaoDTO>
+@using PagedList.Mvc;
+@{
+
+    var controller = "Avaliacao_AvaliacaoDeProdutos";
+    var busca = Request["busca"];
+
+}
+
+
+
+@if (Model.Any())
+{
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="panel">
+                <div class="panel-body">
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <form class="form-inline" role="form" method="post" action="/@controller">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="Busca" value="@busca" name="Busca" placeholder="digite um termo para buscar">
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-default">Buscar</button><a class="btn btn-default @(string.IsNullOrEmpty(busca)?"hidden":"")" href="/@controller">limpar</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <br />
+
+                    <div class="table-responsive1">
+                        <table class="table table-striped mb-none">
+                            <thead>
+                                <tr>
+                                    <th>    
+                                        <div class="row pull-right">
+                                            <div class="col-xs-12">
+                                                <span class="badge">@ViewBag.TotalRows avaliações aprovadas</span>
+                                            </div>
+                                        </div>                                    
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    var alertaClass = "";
+                                    if (item.Avaliacao.ClienteClassificacao <= 3) { alertaClass = "alert alert-danger"; }
+
+                                    <tr class="totLinhas tr_@item.Avaliacao.IdAvaliacao @alertaClass">
+                                        <td>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <strong>
+                                                        @item.Avaliacao.IdAvaliacao - <a href="@item.Produto.PrdLink" target="_blank">@item.Produto.PrdNome - @item.Produto.PrdCodigo</a>
+                                                    </strong>
+                                                    <br class="clearfix" />
+                                                    <div class="panel-body">
+
+                                                        <div class="scrollable visible-slider has-scrollbar" data-plugin-scrollable="" style="height:100px;">
+                                                            <div class="scrollable-content" tabindex="0" style="right: -17px;">
+                                                                <h4>@item.Avaliacao.ClienteTitulo</h4>
+                                                                <p><i class="fa fa-quote-left  fa-pull-left fa-border"></i>@item.Avaliacao.ClienteComentario</p>
+                                                            </div>
+                                                            <div class="scrollable-pane" style="opacity: 1; visibility: visible;">
+                                                                <div class="scrollable-slider" style="height: 98px; transform: translate(0px, 252px);"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <br />
+                                                    <div>
+                                                        <span class="badge badge-roundless"> @item.Avaliacao.ClienteClassificacao </span>
+                                                        @for (int i = 0; i < @item.Avaliacao.ClienteClassificacao; i++)
+                                                        {
+                                                            <i class="fa fa-star fa-1x text-warning "></i>
+                                                        }
+                                                    </div>
+                                                    <p class="text-weight-semibold">
+                                                        Avaliação publicada na loja <strong>@item.Loja.LojaNome @(item.Loja.LojaMarketPlace ? "/Market place" : "")</strong>
+                                                        Avaliado em <strong>@item.Avaliacao.DataAvaliacao.ToString("dd/MM/yyyy")</strong> por <strong>@item.Avaliacao.ClienteNome - @item.Avaliacao.ClienteLocalizacao</strong><br />
+                                                        Email: <strong>@item.Avaliacao.ClienteEmail</strong><br />
+                                                        Cliente recomendou o produto? <strong>@(item.Avaliacao.ClienteRecomenda ? "SIM" : "Não")</strong>
+                                                    </p>
+
+                                                </div>
+                                            </div>
+                                            <hr />
+                                            <div class="row">
+                                                <div class="btn btn-group-circle" id="aprovOuRejPanel_@item.Avaliacao.IdAvaliacao">
+                                                    <button class="btn btn-danger btnRemoverAvaliacao" data-id="@item.Avaliacao.IdAvaliacao" id="btnRemoverAvaliacao">
+                                                        Remover Avaliação
+                                                    </button>
+                                                </div>
+
+                                                <div class="alert alert-success alert-dismissable" id="aprovOuRejAlert_@item.Avaliacao.IdAvaliacao" style="display:none;">
+                                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                                                    <strong>Tudo certo!</strong> Avaliação foi removida com sucesso. Aguarde até 30 minutos para sair completamente do sistema.
+                                                </div>
+                                            </div>
+
+
+
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                        <br />
+                        Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
+                        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, busca = busca, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+}
+else
+{
+
+    <div class="alert alert-warning alert-dismissible" role="alert">
+        <strong>ops!</strong> Não existe resultados no momento. <a class="btn btn-default" href="/@controller">voltar</a>
+    </div>
+}
+
+
+@section Scripts{
+
+    <script src="~/assets/javascripts/controllers/avaliacoes/produto/index.js"></script>
+    <script src="~/assets/vendor/nanoscroller/nanoscroller.js"></script>
+
+}

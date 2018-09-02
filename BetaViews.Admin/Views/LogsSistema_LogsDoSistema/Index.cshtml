@@ -1,0 +1,79 @@
+﻿@model PagedList.IPagedList<BetaViews.Messages.Models.LogErrosModel>
+@using PagedList.Mvc;
+@{
+    bool PodeEditar = false;
+
+    if (AppUserManager.VerificaAcessoPagina(BetaViews.Messages.Models.PaginaAcessoEnum.LogsSistema_LogsDoSistema))
+    {
+        PodeEditar = true;
+    }
+
+}
+
+
+<div class="table-responsive">
+    <div class="panel panel-default">
+        
+    </div>
+
+    <form class="form-inline" role="form" method="post" action="/LogsSistema_LogsDoSistema">
+        <div class="form-group">
+            <input type="text" class="form-control" id="Busca" value="" name="Busca" placeholder="digite um termo para buscar">
+        </div>
+        <button type="submit" class="btn btn-default">Buscar</button>
+    </form>
+
+    <br />
+
+    <table class="table table-bordered table-striped table-condensed mb-none">
+
+        <tr>
+
+            <th>
+                Data
+            </th>
+            <th>
+                Descrição
+            </th>
+            <th>
+                Interface
+            </th>
+            <th>
+                Tipo de Mensagem
+            </th>
+            <th>
+                Protocolo
+            </th>            
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr id="linha_@item.Id">
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Data)
+                </td>
+                <td>
+                    @Html.Raw(item.Descricao.Replace("\n", "<br />"))
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Interface)
+                </td>
+                <td>
+                    
+                    @((BetaViews.Messages.TipoMensagem)(item.TipoMensagem))
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProtocoloRetorno)
+                </td>                
+            </tr>
+        }
+
+    </table>
+    <br />
+    Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
+</div>

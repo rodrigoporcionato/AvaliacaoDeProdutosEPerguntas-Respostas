@@ -1,0 +1,57 @@
+﻿
+@model BetaViews.Messages.Dtos.PaginationDTO
+
+
+@*ActualPageNumber = @Model.ActualPageNumber <br />
+    RowsPerPage = @Model.RowsPerPage<br />
+    TotalRows = @Model.TotalRows*@
+
+@if (Model.TotalRows >10)
+{
+<div class="row">
+
+    <div class="col-sm-12">
+
+        <div>
+            <span>Página @Model.ActualPageNumber de @Model.RowsPerPage</span>
+        </div>
+        <div style="float:right">
+            <div class="p5sPaginacao light-theme push5stars-pagination">
+                <ul class=".push5stars.pagination">
+
+                    @if (@Model.ActualPageNumber <= @Model.RowsPerPage)
+            {
+                if ((Model.ActualPageNumber - 1) > 0)
+                {
+                            <li><a data-page="@(Model.ActualPageNumber - 1)" href="#avaliacao-@(Model.ActualPageNumber - 1)" class="page-link next @Model.BtnPaginationName">Anterior</a></li>
+                        }
+                        else
+                        {
+                            <li class="disabled"><span class="current prev">Anterior</span></li>
+                        }
+                    }
+                    else
+                    {
+                        <li class="disabled"><span class="current prev">Anterior</span></li>
+                    }
+
+                    @if (@Model.ActualPageNumber < @Model.RowsPerPage)
+            {
+                        <li>
+                            <a data-page="@(Model.ActualPageNumber + 1)" href="#avaliacao-@(Model.ActualPageNumber + 1)" class="page-link next @Model.BtnPaginationName">Próximo</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="disabled"><span class="current prev">Próximo</span></li>
+                    }
+                </ul>
+            </div>
+        </div>
+
+
+    </div>    
+</div>
+
+}
+

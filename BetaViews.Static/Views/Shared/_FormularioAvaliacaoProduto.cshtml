@@ -1,0 +1,161 @@
+﻿
+<div class="panel panel-default avaliacaodeprodutoslojas ">
+    <div class="panel-body">
+        <div class="alert alert-info alert-dismissible avaliacaomsgok hidden" role="alert">
+            <div class="text-xs-center">
+                <h2 class="display-3"><i class="fa fa-2x fa-check-circle"></i>Obrigado!</h2>
+                <p class="lead">Agradecemos a sua avaliação!</p>
+                <br />
+                <p class="lead">
+                    <button class="btn btn-default" data-dismiss="modal">Voltar para o produto</button>
+                </p>
+            </div>
+        </div>
+        <div id="avformEnvioAvaliacaoAnalise">
+            <form role="form" id="formEnvioAvaliacaoAnalise" method="post">
+                <div class="row">
+                    <div class="col-md-12 col-xs-12">
+                        <div class="form-group">
+                            <label class="control-label" for="ClienteClassificacao">Classificação geral*</label>
+                            <br class="clearfix">
+                            <br class="clearfix">
+                            <div class="stars">
+                                <input class="star star-5" id="star-5-2" type="radio" name="ClienteClassificacao" value="5" required="">
+                                <label class="star star-5" for="star-5-2"></label>
+                                <input class="star star-4" id="star-4-2" type="radio" name="ClienteClassificacao" value="4">
+                                <label class="star star-4" for="star-4-2"></label>
+                                <input class="star star-3" id="star-3-2" type="radio" name="ClienteClassificacao" value="3">
+                                <label class="star star-3" for="star-3-2"></label>
+                                <input class="star star-2" id="star-2-2" type="radio" name="ClienteClassificacao" value="2">
+                                <label class="star star-2" for="star-2-2"></label>
+                                <input class="star star-1" id="star-1-2" type="radio" name="ClienteClassificacao" value="1">
+                                <label class="star star-1" for="star-1-2"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-xs-12">
+                        <div class="form-group">
+                            <label class="control-label" for="ClienteTitulo">Título da avaliação*</label> (Digite pelo menos 10 caracteres)
+                            <input type="text" class="form-control" name="ClienteTitulo" id="ClienteTitulo" placeholder="Informe o título da sua avaliação" required="" maxlength="100" data-parsley-trigger="keyup" data-parsley-minlength="10" data-parsley-maxlength="100" data-parsley-minlength-message="Insira pelo menos 10 caracteres no título da sua avaliação." data-parsley-validation-threshold="10">
+                        </div> <span id="helpBlock" class="help-block">Exemplo: Achei o produto super simples de usar na minha casa.</span>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-12 col-xs-12">
+                        <div class="form-group">
+                            <label class="control-label" for="ClienteComentario">Avaliação*</label> (Digite pelo menos 60 caracteres)
+                            <textarea class="form-control" name="ClienteComentario" rows="5" required="" data-parsley-trigger="keyup" data-parsley-minlength="60" data-parsley-maxlength="900" data-parsley-minlength-message="Insira pelo menos 60 caracteres no comentário da sua avaliação." data-parsley-validation-threshold="10"></textarea>
+                        </div>
+                        <a class="btn btn-link" data-toggle="collapse" href="#alertaAvalComent">Leias as regras antes de escrever sua avaliação</a>
+                        <span id="helpBlock" class="help-block"></span>
+                    </div>
+                </div>
+                <div id="alertaAvalComent" class="alert alert-info collapse" role="alert">
+                    <p>
+                        <strong>A loja Extra valoriza seus comentários!</strong>
+                        <br class="clearfix">
+                    </p>
+                    <p> Ao escrever sua resenha, considere as seguintes diretrizes: </p>
+                    <ul>
+                        <li>Concentre-se no produto e na sua experiência individual de utilização</li>
+                        <li>Forneça detalhes sobre por que você gostou ou não gostou de um produto</li>
+                        <li>Todas as revisões submetidas estão sujeitas aos termos estabelecidos em nossos Termos de Uso</li>
+                    </ul>
+                    <br class="clearfix">
+                    <p> Reservamo-nos o direito de não publicar a sua análise se contiver algum dos seguintes tipos de conteúdo ou violar outras diretrizes: </p>
+                    <ul>
+                        <li>Obscenidades, linguagem discriminatória ou outra linguagem inadequada para um fórum público</li>
+                        <li>Anúncios, conteúdo "spam" ou referências a outros produtos, ofertas ou sites</li>
+                        <li>Endereços de e-mail, URLs, números de telefone, endereços físicos ou outras formas de informações de contato</li>
+                        <li>Comentários críticos ou maliciosos em outros comentários postados na página ou seus autores</li>
+                    </ul>
+                    <br class="clearfix">
+                    <p>
+                        Além disso, se você deseja compartilhar feedback conosco sobre seleção de produtos, preços, pedidos, entrega ou outros problemas de atendimento ao cliente, não envie esse feedback por meio de uma revisão do produto.
+                        <br> <strong><a href="#" target="_blank">Em vez disso, entre em contato conosco.</a></strong>
+                        <br class="clearfix"> Desfrute escrevendo seu comentário!
+                    </p>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-12 col-xs-12">
+                        <div class="form-group">
+                            <label class="control-label" for="ClienteRecomenda">Você recomendaria este item?*</label>
+                            <p class="form-inline">
+                                <input type="radio" name="ClienteRecomenda" id="ClienteRecomenda1" value="true" required="">
+                                <label class="radio-inline" for="ClienteRecomenda1">&nbsp;&nbsp;Sim</label>&nbsp;&nbsp;
+                                <input type="radio" name="ClienteRecomenda" id="ClienteRecomenda2" value="false">
+                                <label class="radio-inline" for="ClienteRecomenda2">&nbsp;&nbsp;Não</label>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-6 col-xs-6">
+                        <div class="form-group">
+                            <label class="control-label" for="ClienteNome">Nome*</label>
+                            <input type="text" class="form-control" name="ClienteNome" id="ClienteNome" placeholder="Digite seu nome para apresentar na avaliação" required="" maxlength="25" data-parsley-trigger="keyup" data-parsley-minlength="4" data-parsley-maxlength="25" data-parsley-minlength-message="Insira pelo menos 4 caracteres no seu nome." data-parsley-validation-threshold="3">
+                        </div> <span id="helpBlock" class="help-block">Não use seu nome completo ou endereço de e-mail; Sua privacidade é importante para nós.</span>
+                    </div>
+                    <div class="col-md-6 col-xs-6">
+                        <div class="form-group">
+                            <label class="control-label" for="ClienteEmail">E-mail*</label>
+                            <input type="email" class="form-control" id="ClienteEmail" name="ClienteEmail" placeholder="Informe seu e-mail" data-parsley-trigger="change" required="">
+                        </div> <span id="helpBlock" class="help-block">Seu e-mail não irá aparecer nas avaliações.</span>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-6 col-xs-12">
+                        <div class="form-group">
+                            <label class="control-label" for="ClienteLocalizacao">Localização</label>
+                            <select class="form-control" name="ClienteLocalizacao" required="">
+                                <option value="">Selecione sua localização</option>
+                                <option value="AC">Acre</option>
+                                <option value="AL">Alagoas</option>
+                                <option value="AP">Amapá</option>
+                                <option value="AM">Amazonas</option>
+                                <option value="BA">Bahia</option>
+                                <option value="CE">Ceará</option>
+                                <option value="DF">Distrito Federal</option>
+                                <option value="ES">Espírito Santo</option>
+                                <option value="GO">Goiás</option>
+                                <option value="MA">Maranhão</option>
+                                <option value="MT">Mato Grosso</option>
+                                <option value="MS">Mato Grosso do Sul</option>
+                                <option value="MG">Minas Gerais</option>
+                                <option value="PA">Pará</option>
+                                <option value="PB">Paraíba</option>
+                                <option value="PR">Paraná</option>
+                                <option value="PE">Pernambuco</option>
+                                <option value="PI">Piauí</option>
+                                <option value="RJ">Rio de Janeiro</option>
+                                <option value="RN">Rio Grande do Norte</option>
+                                <option value="RS">Rio Grande do Sul</option>
+                                <option value="RO">Rondônia</option>
+                                <option value="RR">Roraima</option>
+                                <option value="SC">Santa Catarina</option>
+                                <option value="SP">São Paulo</option>
+                                <option value="SE">Sergipe</option>
+                                <option value="TO">Tocantins</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="form-group">
+                    <label class="control-label" for="form-group-input">Termo de aceite*</label>
+                    <p>
+                        <input type="checkbox" name="termoAceite" id="termoAceite" required="">
+                        <label class="checkbox-inline" for="termoAceite">&nbsp;&nbsp;Aceito os termos e estou de acordo com o mesmo.</label>
+                    </p>
+                </div>
+                <p>Você poderá receber e-mails relacionados a esse envio. Em todos os e-mails haverá o recurso de cancelar o recebimento de comunicados futuros.</p>
+            </form>
+        </div>
+    </div>
+</div>

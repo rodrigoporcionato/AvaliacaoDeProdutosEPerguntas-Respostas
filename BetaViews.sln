@@ -1,0 +1,88 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BetaViews.API", "BetaViews.API\BetaViews.API.csproj", "{A21AEC6D-17E4-4026-9C67-AAD6A41E5A7C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BetaViews.Messages", "BetaViews.Messages\BetaViews.Messages.csproj", "{72752319-1339-49BF-9768-814E7B7E1FC2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BetaViews.Core", "BetaViews.Core\BetaViews.Core.csproj", "{934CA4DD-924E-4A68-A506-D58815581B74}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WEB And API", "WEB And API", "{779DA980-58A0-4A25-AA7D-4B9DC34200EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BetaViews.Admin", "BetaViews.Admin\BetaViews.Admin.csproj", "{AFCE69F0-283F-459F-BA85-C204CC95ACBC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BetaViews.Static", "BetaViews.Static\BetaViews.Static.csproj", "{A8C9C888-A710-430D-95D4-C56C858490CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BetaViews.WinService", "BetaViews.WinService\BetaViews.WinService.csproj", "{B8C0A856-FB99-4B6F-BAB9-05DCA6ADEB26}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A21AEC6D-17E4-4026-9C67-AAD6A41E5A7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A21AEC6D-17E4-4026-9C67-AAD6A41E5A7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A21AEC6D-17E4-4026-9C67-AAD6A41E5A7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A21AEC6D-17E4-4026-9C67-AAD6A41E5A7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72752319-1339-49BF-9768-814E7B7E1FC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72752319-1339-49BF-9768-814E7B7E1FC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72752319-1339-49BF-9768-814E7B7E1FC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72752319-1339-49BF-9768-814E7B7E1FC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{934CA4DD-924E-4A68-A506-D58815581B74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{934CA4DD-924E-4A68-A506-D58815581B74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{934CA4DD-924E-4A68-A506-D58815581B74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{934CA4DD-924E-4A68-A506-D58815581B74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFCE69F0-283F-459F-BA85-C204CC95ACBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFCE69F0-283F-459F-BA85-C204CC95ACBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFCE69F0-283F-459F-BA85-C204CC95ACBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFCE69F0-283F-459F-BA85-C204CC95ACBC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8C9C888-A710-430D-95D4-C56C858490CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8C9C888-A710-430D-95D4-C56C858490CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8C9C888-A710-430D-95D4-C56C858490CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8C9C888-A710-430D-95D4-C56C858490CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8C0A856-FB99-4B6F-BAB9-05DCA6ADEB26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8C0A856-FB99-4B6F-BAB9-05DCA6ADEB26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8C0A856-FB99-4B6F-BAB9-05DCA6ADEB26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8C0A856-FB99-4B6F-BAB9-05DCA6ADEB26}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A21AEC6D-17E4-4026-9C67-AAD6A41E5A7C} = {779DA980-58A0-4A25-AA7D-4B9DC34200EF}
+		{AFCE69F0-283F-459F-BA85-C204CC95ACBC} = {779DA980-58A0-4A25-AA7D-4B9DC34200EF}
+		{A8C9C888-A710-430D-95D4-C56C858490CD} = {779DA980-58A0-4A25-AA7D-4B9DC34200EF}
+		{B8C0A856-FB99-4B6F-BAB9-05DCA6ADEB26} = {779DA980-58A0-4A25-AA7D-4B9DC34200EF}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 7
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://effectlabweb.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = BetaViews.Messages\\BetaViews.Messages.csproj
+		SccProjectName1 = BetaViews.Messages
+		SccLocalPath1 = BetaViews.Messages
+		SccProjectUniqueName2 = BetaViews.Core\\BetaViews.Core.csproj
+		SccProjectName2 = BetaViews.Core
+		SccLocalPath2 = BetaViews.Core
+		SccProjectUniqueName3 = BetaViews.Static\\BetaViews.Static.csproj
+		SccProjectTopLevelParentUniqueName3 = BetaViews.sln
+		SccProjectName3 = BetaViews.Static
+		SccLocalPath3 = BetaViews.Static
+		SccProjectUniqueName4 = BetaViews.API\\BetaViews.API.csproj
+		SccProjectTopLevelParentUniqueName4 = BetaViews.sln
+		SccProjectName4 = BetaViews.API
+		SccLocalPath4 = BetaViews.API
+		SccProjectUniqueName5 = BetaViews.Admin\\BetaViews.Admin.csproj
+		SccProjectTopLevelParentUniqueName5 = BetaViews.sln
+		SccProjectName5 = BetaViews.Admin
+		SccLocalPath5 = BetaViews.Admin
+		SccProjectUniqueName6 = BetaViews.WinService\\BetaViews.WinService.csproj
+		SccProjectTopLevelParentUniqueName6 = BetaViews.sln
+		SccProjectName6 = BetaViews.WinService
+		SccLocalPath6 = BetaViews.WinService
+	EndGlobalSection
+EndGlobal

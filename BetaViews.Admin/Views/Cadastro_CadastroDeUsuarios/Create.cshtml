@@ -1,0 +1,28 @@
+﻿@model BetaViews.Messages.Models.ClienteAcessoModel
+
+@{
+    ViewBag.Title = "Criação de novo Usuário";
+
+    SelectList lojaPrincipalList = ViewBag.lojaPrincipal;
+
+
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.Partial("~/Views/Cadastro_CadastroDeUsuarios/_formulario.cshtml", Model)
+}
+
+<div>
+    @Html.ActionLink("Voltar", "Index")
+</div>
+
+
+
+@section Scripts{
+
+    <script src="~/assets/javascripts/controllers/ClienteAcesso/index.js"></script>
+
+}

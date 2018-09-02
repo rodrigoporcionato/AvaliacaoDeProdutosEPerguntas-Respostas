@@ -1,0 +1,113 @@
+﻿@model PagedList.IPagedList<BetaViews.Messages.Models.ClienteAcessoModel>
+@using PagedList.Mvc;
+@{
+
+
+    bool PodeEditar = false;
+
+    if (AppUserManager.VerificaAcessoPagina(BetaViews.Messages.Models.PaginaAcessoEnum.Cadastro_PermissoesDeAcesso))
+    {
+        PodeEditar = true;
+    }
+
+}
+
+
+<div class="table-responsive">
+    <div class="panel panel-default">
+        <div class="panel-body">
+
+            @if (PodeEditar)
+            {
+                @Html.ActionLink("criar novo usuário", "Create", null, new { @class = "btn btn-primary pull-right" })
+            }
+        </div>
+    </div>
+    
+    <form class="form-inline" role="form" method="post" action="/Cadastro_CadastroDeUsuarios">
+        <div class="form-group">            
+            <input type="text" class="form-control" id="Busca" value="" name="Busca" placeholder="digite um termo para buscar">            
+         </div>
+        <button type="submit" class="btn btn-default">Buscar</button>
+    </form>   
+
+    <br />
+
+    <table class="table table-bordered table-striped table-condensed mb-none">
+
+        <tr>
+
+            <th>
+                Nome
+            </th>
+            <th>
+                E-mail
+            </th>
+            <th>
+                depto
+            </th>
+            <th>
+                dt último acesso
+            </th>
+            <th>
+                usuário master
+            </th>
+            <th>#</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr id="linha_@item.Id">
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Departamento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DtUltimoAcesso)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UsuarioMaster)
+                </td>
+                <td>
+                    <div class="btn-group-sm">
+                        @if (PodeEditar)
+                        {
+                            <a href="/Cadastro_CadastroDeUsuarios/edit/@item.Id" class="btn btn-default" data-title="editar"><i class="fa fa-pencil"></i></a>
+
+                            if (AppUserManager.Usuario.IdUsuario != item.Id)
+                            {
+                                <a href="#" data-id="@item.Id" class="btn btn-default modalconfirm"><i class="fa fa-trash-o"></i></a>
+                            }
+
+                            <button class="btn btn-group-sm purple-plum" data-toggle="senha" data-email="@item.Id" title="Confirma o envio de senha para o cliente?"><i class="fa fa-send-o"></i> Nova senha</button>
+                        }
+                        else
+                        {
+                            <a href="/Cadastro_CadastroDeUsuarios/edit/@item.Id" class="btn btn-default" data-title="ver"><i class="fa fa-eye"></i></a>
+                        }
+                    </div>
+                </td>
+            </tr>
+        }
+
+    </table>
+    <br />
+    Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
+</div>
+
+
+@section scripts{
+
+
+    <script src="~/assets/javascripts/controllers/ClienteAcesso/index.js"></script>
+}

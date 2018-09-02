@@ -1,0 +1,199 @@
+﻿@model BetaViews.Messages.SendReceiver.QA.PerguntasERespostasDisplayRS
+@{
+    Layout = null;
+}
+
+
+
+
+
+<div class="modal fade bootstrap-iso" id="modalQA" tabindex="-1" role="dialog" aria-labelledby="modalQA-label" style="background-color: rgb(0, 0, 0);">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="modalQA-label">Se ainda está com dúvida, faça uma pergunta</h4>
+            </div>
+            <div class="modal-body">
+                @Html.Partial("_FormularioQA")
+                <span class="enviarQAErro"></span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="enviarQA" class="btn btn-default enviarQA">Enviar</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar pergunta</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade bootstrap-iso" id="modalQAResp" tabindex="-1" role="dialog" aria-labelledby="modalQAResp-label" style="background-color: rgb(0, 0, 0);">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="modalQAResp-label">Responda a pergunta do cliente</h4>
+            </div>
+            <div class="modal-body">
+                @Html.Partial("_FormularioQARepostaTerceiro")
+                <span class="enviarQARespErro"></span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="enviarQAResp" class="btn btn-default enviarQAResp">Enviar sua resposta</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar pergunta</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+@if (!Model.QA.Any() && string.IsNullOrEmpty(ViewBag.ClientSerachFor))
+{
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h2><i class="fa fa-star-o"></i> Perguntas &amp; Respostas</h2>
+        </div>
+        <div class="panel-body">
+            <h3>
+                Ainda não temos perguntas. <a href="#" class="btn btn-default btnOpenQA">Faça uma pergunta se tiver dúvidas do produto</a>
+            </h3>
+        </div>
+    </div>
+}
+else
+{
+
+
+
+
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3>Perguntas &amp; Respostas</h3>
+        </div>
+        <div class="panel-body">
+            <div class="pull-right"> <a href="#" class="btn btn-default btnOpenQA">Faça uma Pergunta</a> </div> <span class="divider"></span>
+            <br class="clearfix" />
+            <h4>@Model.Pagination.TotalRows Perguntas</h4>
+            <br class="clearfix" />
+            <div id="ancorQAp5s"></div>
+            <div class="filter">
+                <div class="row">
+                    <div class="col-lg-7">
+                        <form id="form" method="post">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Busque por uma dúvida" id="txtQABusca">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="submit" id="btnQABuscaOpcao">Buscar</button>
+                                </span>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="or-divider " id="or-seperator"><span></span><p>OU</p></div>
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <select class="form-control" id="btnQAFiltroOpcao">
+                                <option value="DATA_DESC">Mais novo</option>
+                                <option value="DATA_ASC">Mais antigo</option>
+                                <option value="UTIL_DESC">Mais útil</option>
+                                <option value="NAOUTIL_DESC">Menos útil</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br class="clearfix" />
+            <div class="row">
+                <div class="col-md-12">
+                    @Html.Partial("_PaginationPartial", Model.Pagination)
+
+                    @if (ViewBag.ClientSerachFor != "" && !Model.QA.Any())
+                {
+                        <div class="alert alert-warning" role="alert">
+                            <strong>Ops!</strong> Desculpe, não encontramos nenhum resultado para "@ViewBag.ClientSerachFor".
+                            <button id="qaClearQuerysearch" class="btn btn-link">Clique para a busca original</button>
+                        </div>
+                    }
+                    <div class="panel-group" id="accordion">
+                        @foreach (var item in Model.QA)
+                        {
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">@item.ClientePergunta</h4>
+                                    <br class="clearfix" />
+                                    <span class="text-muted">perguntado por <strong>@item.ClienteNome</strong>, @item.ClienteLocalizacao em @item.DtPergunta.ToString("dd/MM/yyyy") </span>
+                                    <br class="clearfix" />
+                                </div>
+                                <div id="collapse_@item.IDQuestion">
+                                    <div class="panel-body">
+                                        @if (!string.IsNullOrEmpty(item.Resposta) && item.IdQAStatus == BetaViews.Messages.Enums.StatusQAEnum.Aprovado)
+                                        {
+                                            <blockquote>
+                                                @Html.Raw(item.Resposta)
+                                                <small>
+                                                    <cite>Respondido em @item.DTResposta.ToString("dd/MM/yyyy") por <strong>@item.RespostaNome</strong></cite>
+
+                                                    @if (!string.IsNullOrEmpty(item.Badge))
+                                                    {
+                                                        <br class="clearfix" /><br class="clearfix" />
+                                                        <img src="http://p5s.com.br/assets/images/badges/clientes/1/@item.Badge" class="img-polaroid" alt="Badge" title="Respondido por um especialista no assunto;)" />
+                                                    }
+                                                </small>
+                                            </blockquote>
+                                        }
+                                        else
+                                        {
+
+                                            <p>
+                                                <span class="text-danger">Essa pergunta ainda não foi respondida.</span>
+                                                <br class="clearfix" />
+                                                <br class="clearfix" />                                                
+                                                @if (string.IsNullOrEmpty(item.Resposta))
+                                                {
+                                                    <a href="#" class="btnOpenQAResp" data-idquestion="@item.IDQuestion">Você sabe a resposta? Responda a pergunta de nosso cliente</a>
+                                                }
+                                            </p>
+                                        }
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+                        }
+                        @if (!string.IsNullOrEmpty(ViewBag.ClientSerachFor))
+                        {
+                            <br class="clearfix" />
+                            <button id="qaClearQuerysearch" class="btn btn-link">Limpar busca</button>
+                        }
+
+                    </div>
+
+                    @Html.Partial("_PaginationPartial", Model.Pagination)
+
+                </div>
+            </div>
+
+            <br class="clearfix"><br class="clearfix"><br class="clearfix"><br class="clearfix">
+            <div class="pull-left">
+                <a href="http://wwww.betaviews.com.br" title="criação de resultados reais" target="_blank" alt="Avaliação auditada por Beta Views">
+                    <img src="http://pushstars.effectlab.com.br/assets/layouts/layout5/img/logo2.png" alt="beta views avaliações" class="img-thumbnail">
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+}
+
+
+
+
+
+@*</div>*@

@@ -1,0 +1,84 @@
+﻿@model BetaViews.Messages.Models.LoginModel
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+<section class="body-sign">
+    <div class="center-sign">
+        <a href="/" class="logo pull-left">
+            <img src="~/assets/images/logo.png"  alt="Admin" />
+        </a>
+
+        <div class="panel panel-sign">
+            <div class="panel-title-sign mt-xl text-right">
+                <h2 class="title text-uppercase text-weight-bold m-none"><i class="fa fa-user mr-xs"></i> Área Restrita</h2>
+            </div>
+            <div class="panel-body">
+                <form class="" action="/clienteacesso/login" method="post">
+                    @Html.AntiForgeryToken()
+
+                    @if (ViewData.ModelState.Any(x => x.Value.Errors.Any()))
+                    {
+                        <div class="alert alert-danger alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            @Html.ValidationSummary("", new { @class = "text-danger" })
+                        </div>
+                    }                    
+                       <div class="form-group mb-lg">
+                        <label>usuário</label>
+                        <div class="input-group input-group-icon">
+                            @*<input name="username" type="text"  />*@
+                            @Html.TextBoxFor(m => m.Usuario, new { @class = "form-control input-lg", @tabindex = "1", @placeholder = "usuário" })
+                            <span class="input-group-addon">
+                                <span class="icon icon-lg">
+                                    <i class="fa fa-user"></i>
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-lg">
+                        <div class="clearfix">
+                            <label class="pull-left">Password</label>
+                            @*<a href="pages-recover-password.html" class="pull-right">Lost Password?</a>*@
+                        </div>
+                        <div class="input-group input-group-icon">
+                            @Html.PasswordFor(m => m.Senha, new { @class = "form-control input-lg", @tabindex = "2", @placeholder = "Senha", @autocomplete = "off", @name = "Senha" })
+
+                            <span class="input-group-addon">
+                                <span class="icon icon-lg">
+                                    <i class="fa fa-lock"></i>
+                                </span>
+                            </span>
+                        </div>
+                        @Html.ValidationMessageFor(m => m.Senha, "", new { @class = "text-danger" })
+
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <div class="checkbox-custom1 checkbox-default">
+                                @*<input id="LembrarSenha" name="LembrarSenha" type="checkbox" value="1" />*@
+                                @Html.CheckBoxFor(m => m.LembrarSenha, new { @id = "1LembrarSenha", @name = "LembrarSenha" })
+
+                                <label for="1LembrarSenha">Lembrar senha</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 text-right">
+                            <button type="submit" class="btn btn-primary hidden-xs">Entrar</button>
+                        </div>
+                    </div>
+
+
+                    <br />
+                    <p class="text-center">Ainda não tem uma conta? <a href="#">Conheça a nossa solução!</a></p>
+
+                </form>
+            </div>
+        </div>
+
+        <p class="text-center text-muted mt-md mb-md">&copy; Copyright 2016..</p>
+    </div>
+</section>

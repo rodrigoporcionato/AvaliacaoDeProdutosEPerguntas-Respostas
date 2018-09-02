@@ -1,0 +1,11 @@
+﻿[
+  {
+    "outputFile": "Content/css/less/BetaViewsCSS.css",
+    "inputFile": "Content/css/less/BetaViewsCSS.less"
+  },
+  {
+    "outputFile": "Content/css/BetaViewsCSS.css",
+    "inputFile": "Content/css/less/BetaViewsCSS.less"
+  }
+
+]

@@ -1,0 +1,362 @@
+﻿
+@{
+    ViewBag.Title = "Principal_DASHBOARD";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <section class="panel">
+            <header class="panel-heading">
+                <h2 class="panel-title">Avaliações Processadas X Aprovadas</h2>
+                <p class="panel-subtitle">Exibe um comparativo de avaliações enviadas x avaliações processadas na loja .</p>
+            </header>
+            <div class="panel-body">
+
+                <!-- Morris: Line -->
+                <div class="chart chart-md" id="morrisLine"></div>
+                <script type="text/javascript">
+
+                    var morrisLineData = [
+  { "period": "2012-10-01", "licensed": 3407, "sorned": 660 },
+  { "period": "2012-09-30", "licensed": 3351, "sorned": 629 },
+  { "period": "2012-09-29", "licensed": 3269, "sorned": 618 },
+  { "period": "2012-09-20", "licensed": 3246, "sorned": 661 },
+  { "period": "2012-09-19", "licensed": 3257, "sorned": 667 },
+  { "period": "2012-09-18", "licensed": 3248, "sorned": 627 },
+  { "period": "2012-09-17", "licensed": 3171, "sorned": 660 },
+  { "period": "2012-09-16", "licensed": 3171, "sorned": 676 },
+  { "period": "2012-09-15", "licensed": 3201, "sorned": 656 },
+  { "period": "2012-09-10", "licensed": 3215, "sorned": 622 }
+                    ];
+
+                    var morrisLineData = [{
+                        y: '01/07/2017',
+                        a: 100,
+                        b: 90
+                    }, {
+                        y: '02/07/2017',
+                        a: 75,
+                        b: 65
+                    }, {
+                        y: '03/07/2017',
+                        a: 50,
+                        b: 40
+                    }, {
+                        y: '04/07/2017',
+                        a: 75,
+                        b: 65
+                    }, {
+                        y: '05/07/2017',
+                        a: 50,
+                        b: 40
+                    }, {
+                        y: '06/07/2017',
+                        a: 75,
+                        b: 65
+                    }, {
+                        y: '07/07/2017',
+                        a: 100,
+                        b: 90
+                    }, {
+                        y: '08/07/2017',
+                        a: 75,
+                        b: 65
+                    }, {
+                        y: '09/07/2017',
+                        a: 100,
+                        b: 90
+                    }];
+
+                    // See: assets/javascripts/ui-elements/examples.charts.js for more settings.
+
+                </script>
+            </div>
+        </section>
+    </div>
+    
+    <div class="col-md-6">
+        <section class="panel">
+            <header class="panel-heading">                
+
+                <h2 class="panel-title">Avaliações Aprovadas</h2>
+                <p class="panel-subtitle">Total de avaliações entre os meses.</p>
+            </header>
+            <div class="panel-body">
+
+                <!-- Flot: Bars -->
+                <div class="chart chart-md" id="flotBars"></div>
+                <script type="text/javascript">
+
+											var flotBarsData = [
+												["Jan", 9428],
+												["Feb", 8242],
+												["Mar", 9525],
+												["Apr", 8723],
+												["May", 7387],
+												["Jun", 9833],
+												["Jul", 8718],
+												["Aug", 10004],
+												["Sep", 8338],
+												["Oct", 19005],
+												["Nov", 25859],
+												["Dec", 12000]
+											];
+
+											// See: assets/javascripts/ui-elements/examples.charts.js for more settings.
+
+                </script>
+
+            </div>
+        </section>
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <section class="panel">
+            <header class="panel-heading">
+                <div class="panel-actions">                 
+                </div>
+
+                <h2 class="panel-title">% de Lojas avaliadas</h2>
+                <p class="panel-subtitle">Market place baseado em todas as lojas com poderação das lojas principais</p>
+            </header>
+            <div class="panel-body">
+
+                <!-- Flot: Pie -->
+                <div class="chart chart-md" id="flotPie"></div>
+                <script type="text/javascript">
+
+											var flotPieData = [{
+												label: "EXTRA 1",
+												data: [
+													[1, 80]
+												],
+												color: '#0088cc'
+											}, {
+												label: "CASAS BAHIA",
+												data: [
+													[1, 10]
+												],
+												color: '#2baab1'
+											}, {
+												label: "PONTO FRIO",
+												data: [
+													[1, 15]
+												],
+												color: '#734ba9'
+											}, {
+												label: "MARKET PLACES",
+												data: [
+													[1, 15]
+												],
+												color: '#E36159'
+											}];
+
+											// See: assets/javascripts/ui-elements/examples.charts.js for more settings.
+
+                </script>
+
+            </div>
+        </section>
+    </div>    
+    <div class="col-md-6">
+        <section class="panel">
+            <header class="panel-heading">
+                
+
+                <h2 class="panel-title">Satisfação Geral de Clientes</h2>
+                <p class="panel-subtitle">Mês Atual x Mês passado</p>
+            </header>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3>Agosto</h3>
+                        <meter min="0" max="100" value="35" id="meter"></meter>                        
+                    </div>
+                    <div class="col-md-6">
+                        <h3>Julho</h3>
+                        <meter min="0" max="100" value="85" id="meterDark"></meter>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<style>
+			#ChartistCSSAnimation .ct-series.ct-series-a .ct-line {
+				fill: none;
+				stroke-width: 4px;
+				stroke-dasharray: 5px;
+				-webkit-animation: dashoffset 1s linear infinite;
+				-moz-animation: dashoffset 1s linear infinite;
+				animation: dashoffset 1s linear infinite;
+			}
+
+			#ChartistCSSAnimation .ct-series.ct-series-b .ct-point {
+				-webkit-animation: bouncing-stroke 0.5s ease infinite;
+				-moz-animation: bouncing-stroke 0.5s ease infinite;
+				animation: bouncing-stroke 0.5s ease infinite;
+			}
+
+			#ChartistCSSAnimation .ct-series.ct-series-b .ct-line {
+				fill: none;
+				stroke-width: 3px;
+			}
+
+			#ChartistCSSAnimation .ct-series.ct-series-c .ct-point {
+				-webkit-animation: exploding-stroke 1s ease-out infinite;
+				-moz-animation: exploding-stroke 1s ease-out infinite;
+				animation: exploding-stroke 1s ease-out infinite;
+			}
+
+			#ChartistCSSAnimation .ct-series.ct-series-c .ct-line {
+				fill: none;
+				stroke-width: 2px;
+				stroke-dasharray: 40px 3px;
+			}
+
+			@@-webkit-keyframes dashoffset {
+				0% {
+					stroke-dashoffset: 0px;
+				}
+
+				100% {
+					stroke-dashoffset: -20px;
+				};
+			}
+
+			@@-moz-keyframes dashoffset {
+				0% {
+					stroke-dashoffset: 0px;
+				}
+
+				100% {
+					stroke-dashoffset: -20px;
+				};
+			}
+
+			@@keyframes dashoffset {
+				0% {
+					stroke-dashoffset: 0px;
+				}
+
+				100% {
+					stroke-dashoffset: -20px;
+				};
+			}
+
+			@@-webkit-keyframes bouncing-stroke {
+				0% {
+					stroke-width: 5px;
+				}
+
+				50% {
+					stroke-width: 10px;
+				}
+
+				100% {
+					stroke-width: 5px;
+				};
+			}
+
+			@@-moz-keyframes bouncing-stroke {
+				0% {
+					stroke-width: 5px;
+				}
+
+				50% {
+					stroke-width: 10px;
+				}
+
+				100% {
+					stroke-width: 5px;
+				};
+			}
+
+			@@keyframes bouncing-stroke {
+				0% {
+					stroke-width: 5px;
+				}
+
+				50% {
+					stroke-width: 10px;
+				}
+
+				100% {
+					stroke-width: 5px;
+				};
+			}
+
+			@@-webkit-keyframes exploding-stroke {
+				0% {
+					stroke-width: 2px;
+					opacity: 1;
+				}
+
+				100% {
+					stroke-width: 20px;
+					opacity: 0;
+				};
+			}
+
+			@@-moz-keyframes exploding-stroke {
+				0% {
+					stroke-width: 2px;
+					opacity: 1;
+				}
+
+				100% {
+					stroke-width: 20px;
+					opacity: 0;
+				};
+			}
+
+			@@keyframes exploding-stroke {
+				0% {
+					stroke-width: 2px;
+					opacity: 1;
+				}
+
+				100% {
+					stroke-width: 20px;
+					opacity: 0;
+				};
+			}
+</style>
+
+@section scripts{
+
+
+<link rel="stylesheet" href="~/assets/vendor/morris.js/morris.css" />
+<link rel="stylesheet" href="~/assets/vendor/chartist/chartist.min.css" />
+    
+<script src="~/assets/vendor/jquery-appear/jquery-appear.js"></script>
+<script src="~/assets/vendor/jquery.easy-pie-chart/jquery.easy-pie-chart.js"></script>
+<script src="~/assets/vendor/flot/jquery.flot.js"></script>
+<script src="~/assets/vendor/flot.tooltip/flot.tooltip.js"></script>
+<script src="~/assets/vendor/flot/jquery.flot.pie.js"></script>
+<script src="~/assets/vendor/flot/jquery.flot.categories.js"></script>
+<script src="~/assets/vendor/flot/jquery.flot.resize.js"></script>
+<script src="~/assets/vendor/jquery-sparkline/jquery-sparkline.js"></script>
+<script src="~/assets/vendor/raphael/raphael.js"></script>
+<script src="~/assets/vendor/morris.js/morris.js"></script>
+<script src="~/assets/vendor/gauge/gauge.js"></script>
+<script src="~/assets/vendor/snap.svg/snap.svg.js"></script>
+<script src="~/assets/vendor/liquid-meter/liquid.meter.js"></script>
+<script src="~/assets/vendor/chartist/chartist.js"></script>
+
+
+
+<script src="~/assets/javascripts/charts/dashboard.js"></script>
+}

@@ -1,0 +1,454 @@
+﻿@{ 
+    var controllerName = HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString();
+    var activePage = "active";
+    var pageDashBoard = controllerName == "Principal_DASHBOARD" ? activePage
+        : "";
+    var pageModeracao = controllerName == "Moderacao_ModeracaoProdutos" ? activePage
+        : controllerName == "Moderacao_ModeracaoLojasEMarketPlace" ? activePage
+        : controllerName == "Moderacao_PerguntasERespostas" ? activePage
+        : "";
+    var pageAvaliacoes = controllerName == "Avaliacao_AvaliacaoDeProdutos"? activePage
+        : controllerName == "Avaliacao_AvaliacaoDeLojasEMarketPlace"? activePage
+        : "";
+    var pageRelatorios = controllerName == "Relatorio_RelatoriosDeProdutos" ? activePage
+        : controllerName == "Relatorio_RelatoriosDeLojasEMarketPlace" ? activePage
+        : controllerName == "Relatorio_Categorias" ? activePage
+        : controllerName == "Relatorio_Marcas" ? activePage
+        : controllerName == "Relatorio_Clientes" ? activePage
+        : "";
+    var pageConfiguracoes = controllerName == "Configuracoes_ConfiguracoesGerais"? activePage
+        : controllerName == "Configuracoes_ConfiguracoesDeClientes" ? activePage
+        : controllerName == "Configuracoes_ConfiguracaoDeLoja" ? activePage
+        : controllerName == "Configuracoes_ConfiguracaoDeAPI" ? activePage
+        :"";
+    var pageAdministracao = controllerName == "Cadastro_CadastroDeUsuarios"? activePage
+        : controllerName == "LogsSistema_LogsDoSistema" ? activePage
+        :"";
+
+
+    switch (controllerName)
+    {
+        case "Principal_DASHBOARD":
+            ViewBag.Title = "Principal";
+            ViewBag.SubTitle = "DASHBOARD";
+            break;
+        case "Moderacao_ModeracaoProdutos":
+            ViewBag.Title = "Moderação";
+            ViewBag.SubTitle = "Moderação de Produtos";
+            break;
+        case "Moderacao_ModeracaoLojasEMarketPlace":
+            ViewBag.Title = "Moderação";
+            ViewBag.SubTitle = "Moderação de Lojas & Market Place";
+            break;
+        case "Moderacao_PerguntasERespostas":
+            ViewBag.Title = "Moderação";
+            ViewBag.SubTitle = "Moderação de Perguntas & Respostas";
+            break;
+        case "Avaliacao_AvaliacaoDeProdutos":
+            ViewBag.Title = "Avaliações";
+            ViewBag.SubTitle = "Avaliações de Produtos";
+            break;
+        case "Avaliacao_AvaliacaoDeLojasEMarketPlace":
+            ViewBag.Title = "Avaliações";
+            ViewBag.SubTitle = "Avaliações de Lojas & Market Place";
+            break;
+        case "Relatorio_RelatoriosDeProdutos":
+            ViewBag.Title = "Relatórios";
+            ViewBag.SubTitle = "Relatórios de Produtos";
+            break;
+        case "Relatorio_RelatoriosDeLojasEMarketPlace":
+            ViewBag.Title = "Relatórios";
+            ViewBag.SubTitle = "Relatórios de Lojas & Market Place";
+            break;
+        case "Relatorio_Categorias":
+            ViewBag.Title = "Relatórios";
+            ViewBag.SubTitle = "Relatórios de Departamentos";
+            break;
+        case "Relatorio_Marcas":
+            ViewBag.Title = "Relatórios";
+            ViewBag.SubTitle = "Relatórios de Marcas";
+            break;
+        case "Relatorio_Clientes":
+            ViewBag.Title = "Relatórios";
+            ViewBag.SubTitle = "Relatórios de Clientes";
+            break;
+
+        case "Configuracoes_ConfiguracoesGerais":
+            ViewBag.Title = "Configurações";
+            ViewBag.SubTitle = "Configurações Gerais";
+            break;
+        case "Configuracoes_ConfiguracoesDeClientes":
+            ViewBag.Title = "Configurações";
+            ViewBag.SubTitle = "Configurações de Clientes";
+            break;
+        case "Configuracoes_ConfiguracaoDeLoja":
+            ViewBag.Title = "Configurações";
+            ViewBag.SubTitle = "Configurações de Lojas";
+            break;
+        case "Configuracoes_ConfiguracaoDeAPI":
+            ViewBag.Title = "Configurações";
+            ViewBag.SubTitle = "Configurações de API";
+            break;
+        case "Cadastro_CadastroDeUsuarios":
+            ViewBag.Title = "Cadastro";
+            ViewBag.SubTitle = "Cadastro de Clientes";
+            break;
+        case "LogsSistema_LogsDoSistema":
+            ViewBag.Title = "Logs";
+            ViewBag.SubTitle = "Logs do Sistema";
+            break;
+        default:
+            break;
+    }
+
+
+}
+
+<!doctype html>
+<html class="fixed has-top-menu">
+<head>
+    <!-- Basic -->
+    <meta charset="UTF-8">
+    <title>@ViewBag.Title | P5S</title>
+    <meta name="keywords" content="HTML5 Admin Template" />
+    <meta name="description" content="Porto Admin - Responsive HTML5 Template">
+    <meta name="author" content="okler.net">
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <!-- Web Fonts  -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light" rel="stylesheet" type="text/css">
+
+    <!-- Vendor CSS -->
+    <link rel="stylesheet" href="~/assets/vendor/bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/assets/vendor/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="~/assets/vendor/magnific-popup/magnific-popup.css" />
+    <link rel="stylesheet" href="~/assets/vendor/bootstrap-datepicker/css/bootstrap-datepicker3.css" />
+    <link rel="stylesheet" href="~/assets/vendor/select2/css/select2.css" />
+    <link rel="stylesheet" href="~/assets/vendor/select2-bootstrap-theme/select2-bootstrap.min.css" />
+    <link rel="stylesheet" href="~/assets/vendor/pnotify/pnotify.custom.css" />
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="~/assets/stylesheets/theme.css" />
+
+    <!-- Skin CSS -->
+    <link rel="stylesheet" href="~/assets/stylesheets/skins/default.css" />
+
+    <!-- Theme Custom CSS -->
+    <link rel="stylesheet" href="~/assets/stylesheets/theme-custom.css">
+
+    <!-- Head Libs -->
+    <script src="~/assets/vendor/modernizr/modernizr.js"></script>
+
+</head>
+<body>
+    <section class="body">
+
+        <!-- start: header -->
+        <header class="header header-nav-menu header-nav-stripe">
+            <div class="logo-container">
+                <a href="/Principal_DASHBOARD" class="logo">
+                    <img src="~/assets/images/logo.png" alt="P5S" />
+                </a>
+                <button class="btn header-btn-collapse-nav hidden-md hidden-lg" data-toggle="collapse" data-target=".header-nav">
+                    <i class="fa fa-bars"></i>
+                </button>
+
+                <!-- start: header nav menu -->
+                <div class="header-nav collapse">
+                    <div class="header-nav-main header-nav-main-effect-1 header-nav-main-sub-effect-1 header-nav-main-square">
+                        <nav>
+                            <ul class="nav nav-pills" id="mainNav">
+                                <li class="@pageDashBoard">
+                                    <a href="/Principal_DASHBOARD">
+                                        Dashboard
+                                    </a>
+                                </li>
+                                @*MODERACAO*@
+                                <li class="dropdown @pageModeracao">
+                                    <a href="#" class="dropdown-toggle">Moderação</a>
+                                    <ul class="dropdown-menu">
+                                        @*<li>
+                                        <a href="http://themeforest.net/item/porto-responsive-html5-template/4106987?ref=Okler">
+                                        Front-End <span class="tip tip-dark">hot</span><em class="not-included">(Not Included)</em>
+                                        </a>
+                                        </li>*@
+                                        <li>
+                                            <a href="/Moderacao_ModeracaoProdutos">
+                                                Produtos
+                                                <span class="pull-right label label-primary">500</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="/Moderacao_ModeracaoLojasEMarketPlace">
+                                                Lojas &amp; Market Place
+                                                <span class="pull-right label label-primary">182</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="/Moderacao_PerguntasERespostas">
+                                                Perguntas &amp; Respostas
+                                                <span class="pull-right label label-primary">150</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                @*AVALIACAO*@
+                                <li class="dropdown @pageAvaliacoes">
+                                    <a href="#" class="dropdown-toggle">Avaliações</a>
+                                    <ul class="dropdown-menu">                              
+                                        <li>
+                                            <a href="/Avaliacao_AvaliacaoDeProdutos">
+                                                Produtos
+                                                <span class="pull-right label label-primary">1500</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="/Avaliacao_AvaliacaoDeLojasEMarketPlace">
+                                                Lojas &amp; Market Place
+                                                <span class="pull-right label label-primary">1132</span>
+                                            </a>
+                                        </li>                                   
+                                    </ul>
+                                </li>
+                                @*RELATORIOS*@
+                                <li class="dropdown @pageRelatorios">
+                                    <a href="#" class="dropdown-toggle">Relatórios</a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a href="/Relatorio_RelatoriosDeProdutos">
+                                                Produtos
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="/Relatorio_RelatoriosDeLojasEMarketPlace">Loja(s) &amp; Market Place</a>
+                                        </li>
+                                        <li>
+                                            <a href="/Relatorio_Categorias">Departamentos</a>
+                                        </li>
+                                        <li>
+                                            <a href="/Relatorio_Marcas">Marcas</a>
+                                        </li>
+                                        <li>
+                                            <a href="/Relatorio_Clientes">Clientes</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                @*configuracoes*@
+                                <li class="dropdown @pageConfiguracoes">
+                                    <a href="#" class="dropdown-toggle">Configurações</a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a href="/Configuracoes_ConfiguracoesGerais">
+                                                Configurações gerais
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="/Configuracoes_ConfiguracoesDeClientes">Configurações de Clientes</a>
+                                        </li>
+                                        <li>
+                                            <a href="/Configuracoes_ConfiguracaoDeLoja">Configuração de Loja</a>
+                                        </li>
+                                        <li>
+                                            <a href="/Configuracoes_ConfiguracaoDeAPI">Configuração de API</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                @*administração*@
+                                <li class="dropdown @pageAdministracao">
+                                    <a href="#" class="dropdown-toggle">Administração</a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a href="/Cadastro_CadastroDeUsuarios">
+                                                Cadastro de usuários
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="/LogsSistema_LogsDoSistema">Logs do Sistema</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <!-- end: header nav menu -->
+            </div>
+
+            <!-- start: search & user box -->
+            <div class="header-right">
+
+                <a class="btn search-toggle hidden-xs hidden-lg" data-toggle-class="active" data-target=".search"><i class="fa fa-search"></i></a>
+                <form action="#" class="search nav-form hidden-xs hidden-sm hidden-md">
+                    <div class="input-group input-search">
+                        <input type="text" class="form-control" name="q" id="q" placeholder="Busca...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+                        </span>
+                    </div>
+                </form>
+
+                <span class="separator"></span>
+
+                <ul class="notifications">                                        
+                    <li>
+                        <a href="#" class="dropdown-toggle notification-icon" data-toggle="dropdown">
+                            <i class="fa fa-bell"></i>
+                            <span class="badge">1</span>
+                        </a>
+
+                        <div class="dropdown-menu notification-menu">
+                            <div class="notification-title">
+                                <span class="pull-right label label-default">1</span>
+                                Alertas
+                            </div>
+
+                            <div class="content">
+                                <ul>                                 
+                                    <li>
+                                        <a href="#" class="clearfix">
+                                            <div class="image">
+                                                <i class="fa fa-signal bg-success"></i>
+                                            </div>
+                                            <span class="title">Sistema operante para sua loja</span>
+                                            <span class="message">@DateTime.Now.ToString("dd/MM/yyyy")</span>
+                                        </a>
+                                    </li>
+                                </ul>
+
+                                <hr />
+
+                                <div class="text-right">
+                                    <a href="#" class="view-more">ver todos alertas</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+
+                <span class="separator"></span>
+
+                <div id="userbox" class="userbox">
+                    <a href="#" data-toggle="dropdown">
+                        <figure class="profile-picture">
+                            <img src="~/assets/images/!logged-user.jpg" alt="" class="img-circle" data-lock-picture="assets/images/!logged-user.jpg" />
+                        </figure>
+                        <div class="profile-info" data-lock-name="@AppUserManager.Usuario.Nome" data-lock-email="@AppUserManager.Usuario.Email">
+                            <span class="name">@AppUserManager.Usuario.Nome</span>                            
+                        </div>
+
+                        <i class="fa custom-caret"></i>
+                    </a>
+
+                    <div class="dropdown-menu">
+                        <ul class="list-unstyled">
+                            <li class="divider"></li>
+                            <li>
+                                <a role="menuitem" tabindex="-1" href="/clienteacesso/meuperfil/@AppUserManager.Usuario.IdUsuario"><i class="fa fa-user"></i> Meu Perfil</a>
+                            </li>                           
+                            <li>
+                                <a role="menuitem" tabindex="-1" href="/clienteacesso/LogOff"><i class="fa fa-power-off"></i> Logout</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- end: search & user box -->
+        </header>
+        <!-- end: header -->
+
+        <div class="inner-wrapper">
+            <section role="main" class="content-body">
+                <header class="page-header">
+                    <h2>@ViewBag.SubTitle</h2>
+                    <div class="right-wrapper pull-right">
+                        <ol class="breadcrumbs">
+                            <li>
+                                <a href="/Principal_DASHBOARD">
+                                    <i class="fa fa-home"></i>
+                                </a>
+                            </li>
+                            <li><span>@ViewBag.Title&nbsp;&nbsp;</span></li>
+                            @if (ViewBag.SubTitle != "")
+                            {
+                                <li><span>@ViewBag.SubTitle&nbsp;&nbsp;</span></li>
+                            }                            
+                        </ol>
+                    </div>
+                </header>
+
+                <!-- start: page -->                
+                <div class="row layout_principal">
+                    <div class="col-md-12">
+                        <section class="panel panel-featured panel-featured-primary">
+                            <div class="panel-body">                                
+                                @RenderBody()
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+
+                
+
+                
+                
+                <!-- end: page -->
+            </section>
+        </div>
+
+        
+
+    </section>
+
+    <!-- Vendor -->
+    <script src="~/assets/vendor/jquery/jquery.js"></script>
+    <script src="~/assets/vendor/jquery-browser-mobile/jquery.browser.mobile.js"></script>
+    <script src="~/assets/vendor/bootstrap/js/bootstrap.js"></script>
+    <script src="~/assets/vendor/nanoscroller/nanoscroller.js"></script>
+    <script src="~/assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    <script src="~/assets/vendor/magnific-popup/jquery.magnific-popup.js"></script>
+    <script src="~/assets/vendor/jquery-placeholder/jquery-placeholder.js"></script>
+    <script src="~/assets/vendor/bootstrap-confirmation/bootstrap-confirmation.js"></script>
+    <script src="~/assets/vendor/select2/js/select2.js"></script>
+    <script src="~/assets/vendor/pnotify/pnotify.custom.js"></script>
+
+    <!-- Theme Base, Components and Settings -->
+    <script src="~/assets/javascripts/theme.js"></script>
+
+    <!-- Theme Custom -->
+    <script src="~/assets/javascripts/theme.custom.js"></script>
+
+    <!-- Theme Initialization Files -->
+    <script src="~/assets/javascripts/theme.init.js"></script>        
+
+    @RenderSection("scripts", required: false)
+
+
+
+    <div id="modalConfirm"  class="zoom-anim-dialog modal-block modal-block-primary mfp-hide">
+        <section class="panel">
+            <header class="panel-heading">
+                <h2 class="panel-title">Confirmação</h2>
+            </header>
+            <div class="panel-body">
+                <div class="modal-wrapper">
+                    <div class="modal-icon">
+                        <i class="fa fa-question-circle"></i>
+                    </div>
+                    <div class="modal-text">
+                        <p>Tem certeza que deseja executar a ação?</p>
+                    </div>
+                </div>
+            </div>
+            <footer class="panel-footer">
+                <div class="row">
+                    <div class="col-md-12 text-right">
+                        <button class="btn btn-primary modal-confirm"  >Confirmar</button>
+                        <button class="btn btn-default modal-dismiss">Cancelar</button>
+                    </div>
+                </div>
+            </footer>
+        </section>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,302 @@
+﻿@model PagedList.IPagedList<BetaViews.Messages.Dtos.QAProdutoDTO>
+@using PagedList.Mvc;
+@{
+
+    var controller = "Moderacao_PerguntasERespostas";
+    var busca = Request["busca"];
+
+}
+
+
+
+@if (Model.Any())
+{
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="panel">
+                <div class="panel-body">
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <form class="form-inline" role="form" method="post" action="/@controller">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="Busca" value="@busca" name="Busca" placeholder="digite um termo para buscar">
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-default">Buscar</button>
+                                    <a class="btn btn-default @(string.IsNullOrEmpty(busca)?"hidden":"")" href="/@controller">limpar</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <br />
+
+                    <div class="table-responsive1">
+                        <table class="table table-striped mb-none">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <div class="row pull-right">
+                                            <div class="col-xs-12">
+                                                <span class="badge">@ViewBag.TotalRows perguntas para responder</span>
+                                            </div>
+                                        </div>
+                                        <div class="btn-group pull-right">                                            
+                                            <a class="btn red btn-outline " href="javascript:;" data-toggle="dropdown">
+                                                <i class="fa fa-share"></i>
+                                                <span class="hidden-xs"> Opções </span>
+                                                <i class="fa fa-angle-down"></i>
+                                            </a>
+                                            <ul class="dropdown-menu pull-right">
+                                                <li>
+                                                    <a href="javascript:;"><i class="fa fa-file-excel-o"></i> Exportar para Excel </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {                                    
+                                    <tr class="tr_@item.IDQuestion">
+                                        <td>
+                                            <h4><span class="badge">@item.IDQuestion</span> <a target="_blank" href="@item.Produto.PrdLink">@item.Produto.PrdNome @item.Produto.PrdCodigo</a> </h4> <br />
+                                            <br />
+                                            <strong>Pergunta:</strong>
+
+                                            <div class="well">
+
+                                                <blockquote>
+                                                    <p class="text-primary">
+                                                        <i class="fa fa-question-circle"></i> @item.ClientePergunta
+                                                    </p>
+                                                </blockquote>
+                                                <small>
+                                                    Por <cite>@item.ClienteNome</cite>
+                                                    E-mail: <strong>@item.ClienteEmail</strong>    <br />
+                                                    Perguntado em <strong>@item.DtPergunta.ToString("dd/MM/yyyy")</strong> na loja <strong>@item.Loja.LojaNome @(item.Loja.LojaMarketPlace ? "- Market Place" : "") </strong>    <br />
+                                                </small>
+                                            </div>
+
+                                            @if (@item.RespondidoPorOutroCliente && !string.IsNullOrEmpty(@item.Resposta))
+                                            {
+                                                <strong>Essa pergunta foi respondida por outro cliente:</strong>
+                                                <div class="alert alert-warning">
+                                                    <i class="fa fa-quote-right"></i>
+                                                    @item.Resposta
+
+                                                    <br /><br />
+                                                    <p>
+                                                        Respondido por <strong>@item.RespTerceiroClienteNome - @item.RespTerceiroClienteLocalizacao (@item.RespTerceiroClienteEmail)</strong>
+                                                        em <strong>@item.DTResposta.ToString("dd/MM/yyyy")</strong> <br />
+                                                    </p>
+
+                                                </div>
+
+
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <button class="btn btn-warning btrespterceiro" data-id="@item.IDQuestion">Aprovar resposta de terceiro</button>
+                                                        ou <button class="btn btn-default btresp" data-nmq="@item.ClienteNome" data-id="@item.IDQuestion">Clique para responder</button>
+                                                    </div>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <hr />
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <button class="btn btn-default btresp" data-nmq="@item.ClienteNome" data-id="@item.IDQuestion">Clique para responder</button>
+                                                    </div>
+                                                </div>
+                                                
+                                            }
+
+                                            
+
+                                          
+                                                
+                                                <div class="resp_@item.IDQuestion " style="display:none;">
+                                                    <strong>Responder ao cliente:</strong><br />
+                                                    <div class="ResponderClienteText_@item.IDQuestion"></div>
+
+                                                    <hr />
+
+                                                    <div class="form-group  col-md-2">
+                                                        <label class="" for="nmrespond">Nome do respondente:</label><br />
+                                                        <input name="nmrespond" type="text" class="form-control" id="nmrespond_@item.IDQuestion" value="@AppUserManager.Usuario.Nome">
+                                                    </div>
+
+                                                    <div class="form-group  col-md-12">
+                                                        <label class="idsbadges" for="nmre">Assinar com um selo na resposta:</label><br />
+
+                                                        <select id="idbadge_@item.IDQuestion" class="selectbadge populate" style="width: 50%">
+                                                            <option id="">Selecione um selo para a resposta</option>
+                                                            @foreach (var b in (List<BetaViews.Messages.Dtos.BadgeDTO>)ViewBag.Badges)
+                                                            {
+                                                                <option value="@b.Id" data-icone="@b.Icone">@b.Nome</option>
+                                                            }
+                                                        </select>
+
+                                                    </div>
+
+                                                    <div class="form-group col-md-12">
+                                                        <label></label>
+                                                        <a href="#" data-id="@item.IDQuestion" class="btn btn-default modalconfirm"><i class="fa fa-send-o"></i>Enviar Resposta</a>
+                                                    </div>
+
+                                                </div>
+
+
+
+
+
+
+
+
+                                            <br />
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                        <br />
+                        Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
+                        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, busca = busca, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+}
+else
+{
+
+    <div class="alert alert-warning alert-dismissible" role="alert">
+        <strong>ops!</strong> Não existe resultados no momento. <a class="btn btn-default" href="/@controller">voltar</a>
+    </div>
+}
+
+
+@section Scripts {
+
+<link href="~/assets/vendor/summernote/summernote.css" rel="stylesheet" />
+<script src="~/assets/vendor/summernote/summernote.min.js"></script>
+
+<script>
+    //pegar p texto:
+    //$('.tr_69').find('.note-editable').html()
+
+    function formatState(state) {
+        var originalOption = state.element;
+        if (!state.id) { return state.text; }
+        var $state = $($(originalOption).data('icone')!=undefined? '<span><img src="/assets/images/badges/clientes/1/' + $(originalOption).data('icone') + '" class="img-flag" /> ' + state.text + '</span>':"");
+        return $state;
+    };
+
+    $(".selectbadge").select2({
+        templateResult: formatState
+    });
+
+
+    
+    $(document).on('click', '.btrespterceiro', function () {
+        var idQuestion = $(this).data('id');
+
+        $.ajax({
+            type: "POST",
+            url: "/Moderacao_PerguntasERespostas/AprovarRepostaTerceiro",
+            data: "idQuestion=" + idQuestion,
+            dataType: "json",
+            success: function (response) {
+                if (response) {
+                    $('.tr_' + idQuestion).hide('slow');
+                    new PNotify({
+                        title: 'Sucesso!',
+                        text: 'A\u00E7\u00E3o executada com sucesso!',
+                        type: 'success'
+                    });
+                } else {
+                    new PNotify({
+                        title: 'erro!',
+                        text: 'Houve um erro na requisição',
+                        type: 'danger'
+                    });
+                }
+            }
+        });
+
+    });
+    $(document).on('click', '.btresp', function () {
+
+        var idQuestion = $(this).data('id');
+        var nmQuestion = $(this).data('nmq');
+        $('.resp_' + idQuestion).toggle();
+        $(this).text(($(this).text() == 'Clique para responder' ? 'Cancelar' : 'Clique para responder'));
+
+        $('.ResponderClienteText_' + idQuestion).summernote({            
+            height: 100,
+            toolbar: [
+                ['insert', ['link', 'picture', 'video', 'fullscreen']]
+            ],
+            callbacks: {
+                onPaste: function (e) {
+                    var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
+                    e.preventDefault();
+                    document.execCommand('insertText', false, bufferText);
+                }
+            }
+        });
+        $('.tr_' + idQuestion).find('.note-editable').html('Olá ' + nmQuestion + ', tudo bem? <br>');
+
+
+    });
+    
+
+
+    $(document).on('click', '.modal-confirm', function (e) {
+        e.preventDefault();
+        $.magnificPopup.close();
+        var id = $(this).attr('data-id');
+
+        var qa = {
+            IdQuestion: id,
+            IdClienteAcesso:0,
+            NomeRespondente: $('#nmrespond_' + id).val(),
+            IdBadge: $('#idbadge_' + id).val(),
+            Resposta: $('.tr_' + id).find('.note-editable').html()
+        }
+        console.log(JSON.stringify(qa));
+
+
+        $.ajax({
+            type: "POST",
+            url: "/Moderacao_PerguntasERespostas/ResponderCliente",
+            data: qa,
+            dataType: "json",
+            success: function (response) {
+                if (response) {
+                    $('.tr_' + id).hide('slow');
+                    new PNotify({
+                        title: 'Sucesso!',
+                        text: 'A\u00E7\u00E3o executada com sucesso!',
+                        type: 'success'
+                    });
+                } else {
+                    new PNotify({
+                        title: 'erro!',
+                        text: 'Houve um erro na requisição',
+                        type: 'danger'
+                    });
+                }
+            }
+        });               
+    });
+
+
+</script>
+
+}

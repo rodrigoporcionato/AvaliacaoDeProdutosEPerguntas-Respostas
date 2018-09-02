@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BetaViews.API</name>
+    </assembly>
+    <members>
+        <member name="T:BetaViews.API.SwaggerConfig">
+            <summary>
+            swagger
+            </summary>
+        </member>
+        <member name="M:BetaViews.API.SwaggerConfig.GetXmlCommentsPath">
+            <summary>
+            comentarios
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BetaViews.API.SwaggerConfig.Register">
+            <summary>
+            registro do swagger
+            </summary>
+        </member>
+        <member name="M:BetaViews.API.Controllers.Avaliacoes.AvaliacoesController.PostarComentarioNegativo(System.Int32)">
+            <summary>
+            post negative
+            </summary>
+            <param name="idReview"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BetaViews.API.Controllers.Avaliacoes.AvaliacoesController.ReportarAbuso(System.Int32)">
+            <summary>
+            report abuse
+            </summary>
+            <param name="idReview"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BetaViews.API.Controllers.QA.PerguntasERespostasController.#ctor(BetaViews.Core.Services.QA.IQAService)">
+            <summary>
+            
+            </summary>
+            <param name="qaService"></param>
+        </member>
+        <member name="M:BetaViews.API.Controllers.QA.PerguntasERespostasController.EnviarPergunta(BetaViews.Messages.SendReceiver.QA.PerguntasERespostasRQ)">
+            <summary>
+            EnviarPergunta sobre um determinado produto
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BetaViews.API.Controllers.QA.PerguntasERespostasController.RespostaTerceiro(BetaViews.Messages.SendReceiver.QA.PerguntasERespostasRespTerceiroRQ)">
+            <summary>
+            Obtem resposta de perguntas de terceiros
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+            <response code="200">Retorna 200 quando encontrado Perguntas e Respostas para o Produto</response>
+            <response code="400">Se request não for informado</response>
+        </member>
+        <member name="M:BetaViews.API.Controllers.QA.PerguntasERespostasController.ObterDuvidas(BetaViews.Messages.SendReceiver.QA.PerguntasERespostasDisplayRQ)">
+            <summary>
+            Obtem Perguntas e Respostas de um produto na sua loja.
+            </summary>
+            <remarks>Retorna lista de Perguntas e Respostas do produto na sua loja</remarks>       
+            <returns>Retorna uma lista de Perguntas e Respostas de um produto</returns>
+            <response code="200">Retorna 200 quando encontrado Perguntas e Respostas para o Produto</response>
+            <response code="400">Se request não for informado</response>
+            <param name="request">
+            </param>
+            <returns></returns>
+        </member>
+        <member name="T:BetaViews.API.Filters.APIAuthenticationAttribute">
+            <summary>
+            token de autorização
+            </summary>
+        </member>
+    </members>
+</doc>
